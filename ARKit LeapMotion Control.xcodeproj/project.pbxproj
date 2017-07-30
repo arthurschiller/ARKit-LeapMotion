@@ -1,0 +1,671 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D75ADF191F2BB9A0006CC229 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF181F2BB9A0006CC229 /* Peripheral.swift */; };
+		D75ADF1C1F2BBAD8006CC229 /* LeapMotionGestureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF1B1F2BBAD8006CC229 /* LeapMotionGestureService.swift */; };
+		D75ADF1E1F2BBB6E006CC229 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF1D1F2BBB63006CC229 /* Data+Extension.swift */; };
+		D75ADF281F2BBEFC006CC229 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF271F2BBEFC006CC229 /* AppDelegate.swift */; };
+		D75ADF2A1F2BBEFC006CC229 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF291F2BBEFC006CC229 /* ViewController.swift */; };
+		D75ADF2D1F2BBEFC006CC229 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D75ADF2B1F2BBEFC006CC229 /* Main.storyboard */; };
+		D75ADF2F1F2BBEFC006CC229 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D75ADF2E1F2BBEFC006CC229 /* Assets.xcassets */; };
+		D75ADF321F2BBEFC006CC229 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D75ADF301F2BBEFC006CC229 /* LaunchScreen.storyboard */; };
+		D75ADF381F2BD26A006CC229 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF1D1F2BBB63006CC229 /* Data+Extension.swift */; };
+		D75ADF391F2BD26D006CC229 /* LeapMotionGestureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF1B1F2BBAD8006CC229 /* LeapMotionGestureService.swift */; };
+		D75ADF3C1F2BD2B5006CC229 /* LeapMotionGestureCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF3B1F2BD29E006CC229 /* LeapMotionGestureCentral.swift */; };
+		D786D0481F262D50007CF64B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D786D0471F262D50007CF64B /* AppDelegate.swift */; };
+		D786D04A1F262D50007CF64B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D786D0491F262D50007CF64B /* ViewController.swift */; };
+		D786D04C1F262D50007CF64B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D786D04B1F262D50007CF64B /* Assets.xcassets */; };
+		D786D04F1F262D50007CF64B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D786D04D1F262D50007CF64B /* Main.storyboard */; };
+		D786D0911F26348E007CF64B /* LeapObjectiveC.mm in Sources */ = {isa = PBXBuildFile; fileRef = D786D08E1F263486007CF64B /* LeapObjectiveC.mm */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker"; }; };
+		D786D0921F263494007CF64B /* libLeap.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D786D0901F263486007CF64B /* libLeap.dylib */; };
+		D786D0931F2634B0007CF64B /* libLeap.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = D786D0901F263486007CF64B /* libLeap.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D786D05F1F262F79007CF64B /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				D786D0931F2634B0007CF64B /* libLeap.dylib in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D74BEDE01F264979001C4256 /* LeapMotion Bluetooth Sender.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "LeapMotion Bluetooth Sender.entitlements"; sourceTree = "<group>"; };
+		D75ADF181F2BB9A0006CC229 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
+		D75ADF1B1F2BBAD8006CC229 /* LeapMotionGestureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeapMotionGestureService.swift; path = Shared/LeapMotionGestureService.swift; sourceTree = "<group>"; };
+		D75ADF1D1F2BBB63006CC229 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Data+Extension.swift"; path = "Shared/Data+Extension.swift"; sourceTree = "<group>"; };
+		D75ADF251F2BBEFC006CC229 /* iOS App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D75ADF271F2BBEFC006CC229 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D75ADF291F2BBEFC006CC229 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D75ADF2C1F2BBEFC006CC229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D75ADF2E1F2BBEFC006CC229 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D75ADF311F2BBEFC006CC229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D75ADF331F2BBEFC006CC229 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D75ADF3B1F2BD29E006CC229 /* LeapMotionGestureCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeapMotionGestureCentral.swift; sourceTree = "<group>"; };
+		D786D0441F262D50007CF64B /* LeapMotion Bluetooth Sender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LeapMotion Bluetooth Sender.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D786D0471F262D50007CF64B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D786D0491F262D50007CF64B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D786D04B1F262D50007CF64B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D786D04E1F262D50007CF64B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D786D0501F262D50007CF64B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D786D0511F262D50007CF64B /* Mac_App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mac_App.entitlements; sourceTree = "<group>"; };
+		D786D0841F263408007CF64B /* Mac App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mac App-Bridging-Header.h"; sourceTree = "<group>"; };
+		D786D08A1F263486007CF64B /* Leap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Leap.h; sourceTree = "<group>"; };
+		D786D08B1F263486007CF64B /* Leap.i */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c.preprocessed; path = Leap.i; sourceTree = "<group>"; };
+		D786D08C1F263486007CF64B /* LeapMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeapMath.h; sourceTree = "<group>"; };
+		D786D08D1F263486007CF64B /* LeapObjectiveC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeapObjectiveC.h; sourceTree = "<group>"; };
+		D786D08E1F263486007CF64B /* LeapObjectiveC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LeapObjectiveC.mm; sourceTree = "<group>"; };
+		D786D0901F263486007CF64B /* libLeap.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libLeap.dylib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D75ADF221F2BBEFC006CC229 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D786D0411F262D50007CF64B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D786D0921F263494007CF64B /* libLeap.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D75ADF151F2BB98C006CC229 /* LeapMotion */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LeapMotion;
+			sourceTree = "<group>";
+		};
+		D75ADF161F2BB98C006CC229 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				D75ADF181F2BB9A0006CC229 /* Peripheral.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		D75ADF171F2BB98C006CC229 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		D75ADF1A1F2BBAB4006CC229 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D75ADF1D1F2BBB63006CC229 /* Data+Extension.swift */,
+				D75ADF1B1F2BBAD8006CC229 /* LeapMotionGestureService.swift */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		D75ADF261F2BBEFC006CC229 /* iOS App */ = {
+			isa = PBXGroup;
+			children = (
+				D75ADF3A1F2BD29E006CC229 /* Bluetooth */,
+				D75ADF271F2BBEFC006CC229 /* AppDelegate.swift */,
+				D75ADF291F2BBEFC006CC229 /* ViewController.swift */,
+				D75ADF2B1F2BBEFC006CC229 /* Main.storyboard */,
+				D75ADF2E1F2BBEFC006CC229 /* Assets.xcassets */,
+				D75ADF301F2BBEFC006CC229 /* LaunchScreen.storyboard */,
+				D75ADF331F2BBEFC006CC229 /* Info.plist */,
+			);
+			path = "iOS App";
+			sourceTree = "<group>";
+		};
+		D75ADF3A1F2BD29E006CC229 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				D75ADF3B1F2BD29E006CC229 /* LeapMotionGestureCentral.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		D786D0391F262D0F007CF64B = {
+			isa = PBXGroup;
+			children = (
+				D75ADF1A1F2BBAB4006CC229 /* Shared */,
+				D786D0461F262D50007CF64B /* Mac App */,
+				D75ADF261F2BBEFC006CC229 /* iOS App */,
+				D786D0451F262D50007CF64B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D786D0451F262D50007CF64B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D786D0441F262D50007CF64B /* LeapMotion Bluetooth Sender.app */,
+				D75ADF251F2BBEFC006CC229 /* iOS App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D786D0461F262D50007CF64B /* Mac App */ = {
+			isa = PBXGroup;
+			children = (
+				D74BEDE01F264979001C4256 /* LeapMotion Bluetooth Sender.entitlements */,
+				D75ADF161F2BB98C006CC229 /* Bluetooth */,
+				D75ADF151F2BB98C006CC229 /* LeapMotion */,
+				D75ADF171F2BB98C006CC229 /* Shared */,
+				D786D0881F263486007CF64B /* Libraries */,
+				D786D0611F26306C007CF64B /* BridgingHeader */,
+				D786D0471F262D50007CF64B /* AppDelegate.swift */,
+				D786D0491F262D50007CF64B /* ViewController.swift */,
+				D786D04B1F262D50007CF64B /* Assets.xcassets */,
+				D786D04D1F262D50007CF64B /* Main.storyboard */,
+				D786D0501F262D50007CF64B /* Info.plist */,
+				D786D0511F262D50007CF64B /* Mac_App.entitlements */,
+			);
+			path = "Mac App";
+			sourceTree = "<group>";
+		};
+		D786D0611F26306C007CF64B /* BridgingHeader */ = {
+			isa = PBXGroup;
+			children = (
+				D786D0841F263408007CF64B /* Mac App-Bridging-Header.h */,
+			);
+			path = BridgingHeader;
+			sourceTree = "<group>";
+		};
+		D786D0881F263486007CF64B /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				D786D0891F263486007CF64B /* LeapMotion */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		D786D0891F263486007CF64B /* LeapMotion */ = {
+			isa = PBXGroup;
+			children = (
+				D786D08A1F263486007CF64B /* Leap.h */,
+				D786D08B1F263486007CF64B /* Leap.i */,
+				D786D08C1F263486007CF64B /* LeapMath.h */,
+				D786D08D1F263486007CF64B /* LeapObjectiveC.h */,
+				D786D08E1F263486007CF64B /* LeapObjectiveC.mm */,
+				D786D08F1F263486007CF64B /* lib */,
+			);
+			path = LeapMotion;
+			sourceTree = "<group>";
+		};
+		D786D08F1F263486007CF64B /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				D786D0901F263486007CF64B /* libLeap.dylib */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D75ADF241F2BBEFC006CC229 /* iOS App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D75ADF341F2BBEFC006CC229 /* Build configuration list for PBXNativeTarget "iOS App" */;
+			buildPhases = (
+				D75ADF211F2BBEFC006CC229 /* Sources */,
+				D75ADF221F2BBEFC006CC229 /* Frameworks */,
+				D75ADF231F2BBEFC006CC229 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iOS App";
+			productName = "iOS App";
+			productReference = D75ADF251F2BBEFC006CC229 /* iOS App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D786D0431F262D50007CF64B /* Mac App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D786D0521F262D50007CF64B /* Build configuration list for PBXNativeTarget "Mac App" */;
+			buildPhases = (
+				D786D0401F262D50007CF64B /* Sources */,
+				D786D0411F262D50007CF64B /* Frameworks */,
+				D786D0421F262D50007CF64B /* Resources */,
+				D786D05F1F262F79007CF64B /* Copy Files */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mac App";
+			productName = "Mac App";
+			productReference = D786D0441F262D50007CF64B /* LeapMotion Bluetooth Sender.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D786D03A1F262D0F007CF64B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				TargetAttributes = {
+					D75ADF241F2BBEFC006CC229 = {
+						CreatedOnToolsVersion = 9.0;
+					};
+					D786D0431F262D50007CF64B = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = D786D03D1F262D0F007CF64B /* Build configuration list for PBXProject "ARKit LeapMotion Control" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D786D0391F262D0F007CF64B;
+			productRefGroup = D786D0451F262D50007CF64B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D786D0431F262D50007CF64B /* Mac App */,
+				D75ADF241F2BBEFC006CC229 /* iOS App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D75ADF231F2BBEFC006CC229 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D75ADF321F2BBEFC006CC229 /* LaunchScreen.storyboard in Resources */,
+				D75ADF2F1F2BBEFC006CC229 /* Assets.xcassets in Resources */,
+				D75ADF2D1F2BBEFC006CC229 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D786D0421F262D50007CF64B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D786D04C1F262D50007CF64B /* Assets.xcassets in Resources */,
+				D786D04F1F262D50007CF64B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D75ADF211F2BBEFC006CC229 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D75ADF391F2BD26D006CC229 /* LeapMotionGestureService.swift in Sources */,
+				D75ADF2A1F2BBEFC006CC229 /* ViewController.swift in Sources */,
+				D75ADF381F2BD26A006CC229 /* Data+Extension.swift in Sources */,
+				D75ADF3C1F2BD2B5006CC229 /* LeapMotionGestureCentral.swift in Sources */,
+				D75ADF281F2BBEFC006CC229 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D786D0401F262D50007CF64B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D75ADF1C1F2BBAD8006CC229 /* LeapMotionGestureService.swift in Sources */,
+				D786D0911F26348E007CF64B /* LeapObjectiveC.mm in Sources */,
+				D786D04A1F262D50007CF64B /* ViewController.swift in Sources */,
+				D786D0481F262D50007CF64B /* AppDelegate.swift in Sources */,
+				D75ADF191F2BB9A0006CC229 /* Peripheral.swift in Sources */,
+				D75ADF1E1F2BBB6E006CC229 /* Data+Extension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D75ADF2B1F2BBEFC006CC229 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D75ADF2C1F2BBEFC006CC229 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D75ADF301F2BBEFC006CC229 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D75ADF311F2BBEFC006CC229 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D786D04D1F262D50007CF64B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D786D04E1F262D50007CF64B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D75ADF351F2BBEFC006CC229 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = CM9ZUQ5C92;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "iOS App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arthurschiller.ARKitLeapMotion.iOS-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D75ADF361F2BBEFC006CC229 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = CM9ZUQ5C92;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "iOS App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arthurschiller.ARKitLeapMotion.iOS-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D786D03E1F262D0F007CF64B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		D786D03F1F262D0F007CF64B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		D786D0531F262D50007CF64B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = CM9ZUQ5C92;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Mac App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mac\\ App/Libraries/LeapMotion/lib",
+					"$(PROJECT_DIR)/Mac\\ App/Libraries/LeapMotion/lib",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arthurschiller.ARKitLeapMotion.Mac-App";
+				PRODUCT_NAME = "LeapMotion Bluetooth Sender";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mac App/BridgingHeader/Mac App-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		D786D0541F262D50007CF64B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = CM9ZUQ5C92;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Mac App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mac\\ App/Libraries/LeapMotion/lib",
+					"$(PROJECT_DIR)/Mac\\ App/Libraries/LeapMotion/lib",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arthurschiller.ARKitLeapMotion.Mac-App";
+				PRODUCT_NAME = "LeapMotion Bluetooth Sender";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mac App/BridgingHeader/Mac App-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D75ADF341F2BBEFC006CC229 /* Build configuration list for PBXNativeTarget "iOS App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D75ADF351F2BBEFC006CC229 /* Debug */,
+				D75ADF361F2BBEFC006CC229 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D786D03D1F262D0F007CF64B /* Build configuration list for PBXProject "ARKit LeapMotion Control" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D786D03E1F262D0F007CF64B /* Debug */,
+				D786D03F1F262D0F007CF64B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D786D0521F262D50007CF64B /* Build configuration list for PBXNativeTarget "Mac App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D786D0531F262D50007CF64B /* Debug */,
+				D786D0541F262D50007CF64B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D786D03A1F262D0F007CF64B /* Project object */;
+}
