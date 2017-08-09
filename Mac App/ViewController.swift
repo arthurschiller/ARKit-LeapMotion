@@ -137,7 +137,15 @@ extension LeapService{
                     return
                 }
                 
-//                print(leapHand.rotationAngle)
+//                let rotationX = leapHand.direction.roll.radiansToDegrees
+//                let rotationX = Measurement(value: Double(leapHand.direction.roll), unit: UnitAngle.radians).converted(to: UnitAngle.degrees)
+                
+                
+                let rotationX = leapHand.direction.roll.radiansToDegrees
+                let rotationY = leapHand.direction.pitch.radiansToDegrees
+                let rotationZ = leapHand.direction.yaw.radiansToDegrees
+                
+                let previousFrame = controller.frame(1)
                 
                 let displayWidth: Float = 375
                 let displayHeight: Float = 667
@@ -153,7 +161,7 @@ extension LeapService{
                 
                 let palmPositon = PalmPosition(x: posX, y: posY, z: posZ)
                 
-                print("PositionX: \(posX), PositionY: \(posY)")
+//                print("PositionX: \(posX), PositionY: \(posY)")
                 delegate?.didUpdate(palmPosition: palmPositon)
             }
         }
