@@ -26,6 +26,8 @@
 		D786D0911F26348E007CF64B /* LeapObjectiveC.mm in Sources */ = {isa = PBXBuildFile; fileRef = D786D08E1F263486007CF64B /* LeapObjectiveC.mm */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker"; }; };
 		D786D0921F263494007CF64B /* libLeap.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D786D0901F263486007CF64B /* libLeap.dylib */; };
 		D786D0931F2634B0007CF64B /* libLeap.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = D786D0901F263486007CF64B /* libLeap.dylib */; };
+		D79D21F71F3F2AE4001EFEDF /* LeapVisualizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79D21F61F3F2AE4001EFEDF /* LeapVisualizationViewController.swift */; };
+		D7ECB88F1F3F370600D0B406 /* LeapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7ECB88E1F3F370600D0B406 /* LeapService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -70,6 +72,8 @@
 		D786D08D1F263486007CF64B /* LeapObjectiveC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeapObjectiveC.h; sourceTree = "<group>"; };
 		D786D08E1F263486007CF64B /* LeapObjectiveC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LeapObjectiveC.mm; sourceTree = "<group>"; };
 		D786D0901F263486007CF64B /* libLeap.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libLeap.dylib; sourceTree = "<group>"; };
+		D79D21F61F3F2AE4001EFEDF /* LeapVisualizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeapVisualizationViewController.swift; sourceTree = "<group>"; };
+		D7ECB88E1F3F370600D0B406 /* LeapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeapService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,26 +95,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D75ADF151F2BB98C006CC229 /* LeapMotion */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LeapMotion;
-			sourceTree = "<group>";
-		};
 		D75ADF161F2BB98C006CC229 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
 				D75ADF181F2BB9A0006CC229 /* Peripheral.swift */,
 			);
 			path = Bluetooth;
-			sourceTree = "<group>";
-		};
-		D75ADF171F2BB98C006CC229 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Shared;
 			sourceTree = "<group>";
 		};
 		D75ADF1A1F2BBAB4006CC229 /* Shared */ = {
@@ -167,10 +157,10 @@
 		D786D0461F262D50007CF64B /* Mac App */ = {
 			isa = PBXGroup;
 			children = (
+				D7ECB88D1F3F36E700D0B406 /* Shared */,
+				D79D21F41F3F2A7B001EFEDF /* LeapVisualization */,
 				D74BEDE01F264979001C4256 /* LeapMotion Bluetooth Sender.entitlements */,
 				D75ADF161F2BB98C006CC229 /* Bluetooth */,
-				D75ADF151F2BB98C006CC229 /* LeapMotion */,
-				D75ADF171F2BB98C006CC229 /* Shared */,
 				D786D0881F263486007CF64B /* Libraries */,
 				D786D0611F26306C007CF64B /* BridgingHeader */,
 				D786D0471F262D50007CF64B /* AppDelegate.swift */,
@@ -218,6 +208,38 @@
 				D786D0901F263486007CF64B /* libLeap.dylib */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		D79D21F41F3F2A7B001EFEDF /* LeapVisualization */ = {
+			isa = PBXGroup;
+			children = (
+				D79D21F51F3F2A94001EFEDF /* ViewController */,
+			);
+			path = LeapVisualization;
+			sourceTree = "<group>";
+		};
+		D79D21F51F3F2A94001EFEDF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D79D21F61F3F2AE4001EFEDF /* LeapVisualizationViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D7ECB88D1F3F36E700D0B406 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D7ECB8901F3F371B00D0B406 /* Services */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		D7ECB8901F3F371B00D0B406 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D7ECB88E1F3F370600D0B406 /* LeapService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,8 +366,10 @@
 				D786D0911F26348E007CF64B /* LeapObjectiveC.mm in Sources */,
 				D786D04A1F262D50007CF64B /* ViewController.swift in Sources */,
 				D786D0481F262D50007CF64B /* AppDelegate.swift in Sources */,
+				D7ECB88F1F3F370600D0B406 /* LeapService.swift in Sources */,
 				D75ADF191F2BB9A0006CC229 /* Peripheral.swift in Sources */,
 				D75ADF1E1F2BBB6E006CC229 /* Data+Extension.swift in Sources */,
+				D79D21F71F3F2AE4001EFEDF /* LeapVisualizationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

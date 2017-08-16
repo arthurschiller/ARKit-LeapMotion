@@ -2676,7 +2676,7 @@ typedef enum DeviceType
  * @returns The LeapInteractionBox height in millimeters.
  * @available Since 1.0
  */
-@property (nonatomic, getter = width, readonly)float height;
+@property (nonatomic, getter = height, readonly)float height;
 - (float)height;
 /**
  * The depth of the LeapInteractionBox in millimeters, measured along the z-axis.
@@ -2686,7 +2686,7 @@ typedef enum DeviceType
  * @returns The LeapInteractionBox depth in millimeters.
  * @available Since 1.0
  */
-@property (nonatomic, getter = width, readonly)float depth;
+@property (nonatomic, getter = depth, readonly)float depth;
 - (float)depth;
 /**
  * Reports whether this is a valid LeapInteractionBox object.
