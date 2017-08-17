@@ -7,49 +7,35 @@
 
 import Cocoa
 import SceneKit
+import OpenGL
 
 class LeapVisualizationViewController: NSViewController {
     
+    private var sceneManager: LeapVisualizationSceneManager?
     private let scene = LeapVisualizationScene()
     private lazy var sceneView: SCNView = {
-        let scene = SCNView(frame: .zero)
-        scene.translatesAutoresizingMaskIntoConstraints = false
-        return scene
+        let view = SCNView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
-    let leapMotionGesturePeripheral = LeapMotionGesturePeripheral()
-    var leapService: LeapService?
+    private let leapMotionGesturePeripheral = LeapMotionGesturePeripheral()
+    private let leapService = LeapService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
     }
-    
-    @objc private func didPan(sender: NSPanGestureRecognizer) {
-        if sender.state == .ended {
-            guard
-                let quaternion = self.sceneView.pointOfView?.orientation,
-                let position = self.sceneView.pointOfView?.position
-                else {
-                    return
-            }
-            print("Orientation: (\(quaternion.x),\(quaternion.y),\(quaternion.z),\(quaternion.w)) Position: (\(position.x),\(position.y),\(position.z)")
-        }
-    }
-    
     private func commonInit() {
 //        leapMotionGesturePeripheral.startAdvertising()
+        leapService.delegate = self
+        leapService.run()
         
-        leapService = LeapService()
-        leapService?.delegate = self
-        leapService?.run()
+        sceneManager = LeapVisualizationSceneManager(
+            sceneView: self.sceneView,
+            scene: self.scene
+        )
         
-        setupScene()
-        
-        let gestureRecognizer = NSPanGestureRecognizer(target: self, action: #selector(didPan))
-        gestureRecognizer.delaysPrimaryMouseButtonEvents = false
-        gestureRecognizer.delaysSecondaryMouseButtonEvents = false
-        sceneView.addGestureRecognizer(gestureRecognizer)
         view.addSubview(sceneView)
         NSLayoutConstraint.activate([
             sceneView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -58,39 +44,81 @@ class LeapVisualizationViewController: NSViewController {
             sceneView.leftAnchor.constraint(equalTo: view.leftAnchor)
         ])
     }
-    
-    private func setupScene() {
-        sceneView.scene = scene
-        sceneView.backgroundColor = .black
-        sceneView.autoenablesDefaultLighting = true
-        sceneView.allowsCameraControl = true
-        sceneView.showsStatistics = true
-        sceneView.preferredFramesPerSecond = 60
-    }
-    
-    override func touchesEnded(with event: NSEvent) {
-        super.touchesEnded(with: event)
-        print("touch")
-    }
-    
-    override func mouseDragged(with event: NSEvent) {
-        super.mouseDragged(with: event)
-        print("yup")
-    }
 }
 
 extension LeapVisualizationViewController: LeapServiceDelegate {
+    func willUpdateData() {
+        scene.toggleNodes(show: true)
+    }
+    
+    func didStopUpdatingData() {
+        scene.toggleNodes(show: false)
+    }
+    
     func didUpdate(interactionBoxRepresentation: LeapInteractionBoxRepresentation) {
         print("interaction box did change")
 //        scene.updateInteractionBox(withData: interactionBoxData)
     }
     
     func didUpdate(handRepresentation: LeapHandRepresentation) {
-        scene.updateHand(with: handRepresentation)
+        sceneManager?.leapHandRepresentation = handRepresentation
+    }
+}
+
+class LeapVisualizationSceneManager: NSObject, SCNSceneRendererDelegate {
+    let sceneView: SCNView
+    let scene: LeapVisualizationScene
+    
+    var leapHandRepresentation: LeapHandRepresentation? = nil {
+        didSet {
+            guard let data = leapHandRepresentation else {
+                return
+            }
+            scene.updateHand(with: data)
+        }
+    }
+    
+    init(sceneView: SCNView, scene: LeapVisualizationScene) {
+        self.sceneView = sceneView
+        self.scene = scene
+        super.init()
+        commonInit()
+    }
+    
+    private func commonInit() {
+        setupScene()
+    }
+    
+    private func setupScene() {
+        sceneView.scene = scene
+        sceneView.backgroundColor = .cyan
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.allowsCameraControl = true
+        sceneView.showsStatistics = true
+        sceneView.preferredFramesPerSecond = 60
+        sceneView.antialiasingMode = .multisampling4X
+        sceneView.delegate = self
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
+        // hook into rendering
     }
 }
 
 class LeapVisualizationScene: SCNScene {
+    
+    enum Mode {
+        case showSkeleton
+        case fingerPainting
+        case moveAndRotate
+    }
+    
+    var mode: Mode = .moveAndRotate {
+        didSet {
+            updateMode()
+        }
+    }
+    
     private var interactionBoxGeometry: SCNGeometry? {
         didSet {
             guard let geometry = interactionBoxGeometry else {
@@ -101,9 +129,17 @@ class LeapVisualizationScene: SCNScene {
     }
     
     private let cameraNode = SCNNode()
-    private let floorNode: SCNNode = SCNNode()
     private let interactionBoxNode: SCNNode = SCNNode()
+    
+    private lazy var geometryNode: SCNNode = {
+        let geometry = SCNBox(width: 70, height: 2, length: 120, chamferRadius: 2)//SCNTorus(ringRadius: 20, pipeRadius: 2)
+        geometry.firstMaterial?.diffuse.contents = NSColor.white.withAlphaComponent(0.8)
+        let node = SCNNode(geometry: geometry)
+        return node
+    }()
     private lazy var handNode: LeapVisualizationHandNode = LeapVisualizationHandNode()
+    private let particleNode = SCNNode()
+    private lazy var particleTrail: SCNParticleSystem? = self.createTrail()
     
     override init() {
         super.init()
@@ -120,41 +156,67 @@ class LeapVisualizationScene: SCNScene {
     }
     
     private func commonInit() {
-//        rootNode.addChildNode(cameraNode)
-//        setupCamera()
-        let box = SCNNode(geometry: SCNBox(width: 50, height: 4, length: 50, chamferRadius: 0))
-        box.geometry?.firstMaterial?.diffuse.contents = NSColor.white.withAlphaComponent(0)
-//        rootNode.addChildNode(interactionBoxNode)
-//        floorNode.geometry = SCNFloor()
-        floorNode.position.y = -10
-        floorNode.position.z = 10
-//        floorNode.position = SCNVector3Zero
-//        floorNode.geometry?.firstMaterial?.diffuse.contents = NSColor.white.withAlphaComponent(0.8)
-//        rootNode.addChildNode(floorNode)
-        rootNode.addChildNode(box)
-        rootNode.addChildNode(handNode)
+        setupCamera()
+        setupHandNode()
+        addGeometryNode()
+        addParticleTrailNode()
+        updateMode()
+        
+//        delay(withSecond: 3) {
+//            self.mode = .fingerPainting
+//        }
+//
+//        delay(withSecond: 6) {
+//            self.mode = .moveAndRotate
+//        }
     }
     
     private func setupCamera() {
+        let cameraNode = SCNNode()
         let camera = SCNCamera()
-        camera.xFov = 40
-        camera.yFov = 40
+        camera.zFar = 1500
         cameraNode.camera = camera
-        
-//        (-0.659327924251556,0.00110108347143978,-0.00492901774123311,0.751838564872742) Position: (3.4608268737793,420.715454101562,55.4095077514648
-        
-        cameraNode.position = SCNVector3(
-            x: 3.4608268737793,
-            y: 420.715454101562,
-            z: 55.4095077514648
-        )
-        
-        cameraNode.orientation = SCNQuaternion(
-            x: -0.659327924251556,
-            y: 0.00110108347143978,
-            z: -0.00492901774123311,
-            w: 0.751838564872742
-        )
+        cameraNode.position = SCNVector3(x: 0, y: 400, z: 0)
+        cameraNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: CGFloat(-90.degreesToRadians))
+        rootNode.addChildNode(cameraNode)
+    }
+    
+    private func setupHandNode() {
+        handNode.opacity = 0
+        rootNode.addChildNode(handNode)
+    }
+    
+    private func addGeometryNode() {
+        rootNode.addChildNode(geometryNode)
+    }
+    
+    private func addParticleTrailNode() {
+        guard let particleSystem = particleTrail else {
+            return
+        }
+        particleNode.addParticleSystem(particleSystem)
+        rootNode.addChildNode(particleNode)
+    }
+    
+    private func createTrail() -> SCNParticleSystem? {
+        guard let trail = SCNParticleSystem(named: "FireParticleTrail.scnp", inDirectory: nil) else {
+            return nil
+        }
+        return trail
+    }
+    
+    private func updateMode() {
+        switch mode {
+        case .showSkeleton:
+            toggle(node: handNode, show: true)
+            [particleNode, geometryNode].forEach { toggle(node: $0, show: false) }
+        case .fingerPainting:
+            toggle(node: particleNode, show: true)
+            [handNode, geometryNode].forEach { toggle(node: $0, show: false) }
+        case .moveAndRotate:
+            toggle(node: geometryNode, show: true)
+            [particleNode, handNode].forEach { toggle(node: $0, show: false) }
+        }
     }
     
     func updateInteractionBox(withData data: LeapInteractionBoxRepresentation) {
@@ -168,19 +230,37 @@ class LeapVisualizationScene: SCNScene {
     }
     
     func updateHand(with data: LeapHandRepresentation) {
-        handNode.update(with: data)
+        switch mode {
+        case .showSkeleton:
+            self.handNode.update(with: data)
+        case .fingerPainting:
+            particleNode.position = data.fingers[1].tipPosition
+        case .moveAndRotate:
+            geometryNode.position = data.position
+            geometryNode.eulerAngles = SCNVector3(
+                x: data.eulerAngles.x,
+                y: data.eulerAngles.y,
+                z: data.eulerAngles.z
+            )
+        }
+    }
+    
+    func toggleNodes(show: Bool) {
+        let opacityAction = SCNAction.fadeOpacity(to: show ? 1 : 0, duration: 0.3)
+        let nodes = [handNode, particleNode, geometryNode]
+        nodes.forEach {
+            $0.runAction(opacityAction)
+        }
+    }
+    
+    func toggle(node: SCNNode, show: Bool) {
+        node.runAction(show ? SCNAction.unhide() : SCNAction.hide())
     }
 }
 
 class LeapVisualizationHandNode: SCNNode {
     
-    private lazy var palm: SCNNode = {
-        let geometry = SCNSphere(radius: 30)
-        geometry.firstMaterial?.diffuse.contents = NSColor.white.withAlphaComponent(0.2)
-        let node = SCNNode(geometry: geometry)
-        return node
-    }()
-    
+    private let connectionLineNode = SCNNode()
     private lazy var thumb = LeapVisualizationFingerNode(type: .thumb)
     private lazy var indexFinger = LeapVisualizationFingerNode(type: .index)
     private lazy var middleFinger = LeapVisualizationFingerNode(type: .middle)
@@ -210,21 +290,28 @@ class LeapVisualizationHandNode: SCNNode {
     }
     
     private func commonInit() {
-        addChildNode(palm)
+        addChildNode(connectionLineNode)
         fingers.forEach {
             addChildNode($0)
         }
     }
     
     func update(with data: LeapHandRepresentation) {
-        palm.position = data.position
-        print(data.fingers.count)
         guard data.fingers.count == 5 else {
             return
         }
         for i in 0...fingers.count - 1 {
             fingers[i].update(with: data.fingers[i])
         }
+        connectionLineNode.geometry = SCNGeometry.makeLine(
+            from: data.fingers[0].mcpPosition,
+            connectedTo: [
+                data.fingers[1].mcpPosition,
+                data.fingers[2].mcpPosition,
+                data.fingers[3].mcpPosition,
+                data.fingers[4].mcpPosition
+            ]
+        )
     }
 }
 
@@ -236,6 +323,8 @@ class LeapVisualizationFingerNode: SCNNode {
     private lazy var pipJoint: SCNNode = self.makeJoint()
     private lazy var dipJoint: SCNNode = self.makeJoint()
     private lazy var tipJoint: SCNNode = self.makeJoint()
+    
+    private let boneLine = SCNNode()
     
     private lazy var joints: [SCNNode] = [
         self.mcpJoint,
@@ -260,20 +349,69 @@ class LeapVisualizationFingerNode: SCNNode {
     }
     
     private func commonInit() {
+        addChildNode(boneLine)
+        
         joints.forEach {
             addChildNode($0)
         }
     }
     
     private func makeJoint() -> SCNNode {
-        let geometry = SCNSphere(radius: 2)
+        let geometry = SCNSphere(radius: 1)
         return SCNNode(geometry: geometry)
     }
     
     func update(with data: LeapFingerRepresentation) {
+        boneLine.geometry = SCNGeometry.makeLine(from:
+            [
+                data.mcpPosition,
+                data.pipPosition,
+                data.dipPosition,
+                data.tipPosition
+            ]
+        )
         mcpJoint.position = data.mcpPosition
         pipJoint.position = data.pipPosition
         dipJoint.position = data.dipPosition
         tipJoint.position = data.tipPosition
+    }
+}
+
+extension SCNGeometry {
+    class func makeLine(from startPoint: SCNVector3, to endPoint: SCNVector3) -> SCNGeometry {
+        let indices: [Int32] = [0, 1]
+        let source = SCNGeometrySource(vertices: [startPoint, endPoint])
+        let element = SCNGeometryElement(indices: indices, primitiveType: .line)
+        return SCNGeometry(sources: [source], elements: [element])
+    }
+    
+    class func makeLine(from points: [SCNVector3]) -> SCNGeometry? {
+        guard !points.isEmpty || points.count == 1 else {
+            return nil
+        }
+        var indices: [Int32] = [0]
+        if points.count > 2 {
+            for i in 1...points.count - 2 {
+                indices.append(Int32(i))
+                indices.append(Int32(i))
+            }
+        }
+        indices.append(Int32((points.count - 1)))
+        let source = SCNGeometrySource(vertices: points)
+        let element = SCNGeometryElement(indices: indices, primitiveType: SCNGeometryPrimitiveType.line)
+        return SCNGeometry(sources: [source], elements: [element])
+    }
+    
+    class func makeLine(from startPoint: SCNVector3, connectedTo endPoints: [SCNVector3]) -> SCNGeometry {
+        var indices: [Int32] = []
+        for i in 0...endPoints.count {
+            indices.append(0)
+            indices.append(Int32(i))
+        }
+        var points = endPoints
+        points.insert(startPoint, at: 0)
+        let source = SCNGeometrySource(vertices: points)
+        let element = SCNGeometryElement(indices: indices, primitiveType: SCNGeometryPrimitiveType.line)
+        return SCNGeometry(sources: [source], elements: [element])
     }
 }

@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		D704A6AA1F3A42A000B11030 /* SharedExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D704A6A91F3A42A000B11030 /* SharedExtensions.swift */; };
+		D71C35591F45CCBB0096A044 /* SmokeParticleTrail.scnp in Resources */ = {isa = PBXBuildFile; fileRef = D71C35571F45CCBB0096A044 /* SmokeParticleTrail.scnp */; };
+		D71C355A1F45CCBB0096A044 /* SmokeParticleTrail.scnp in Resources */ = {isa = PBXBuildFile; fileRef = D71C35571F45CCBB0096A044 /* SmokeParticleTrail.scnp */; };
+		D71C355B1F45CCBB0096A044 /* smoke.png in Resources */ = {isa = PBXBuildFile; fileRef = D71C35581F45CCBB0096A044 /* smoke.png */; };
+		D71C355C1F45CCBB0096A044 /* smoke.png in Resources */ = {isa = PBXBuildFile; fileRef = D71C35581F45CCBB0096A044 /* smoke.png */; };
+		D71C355F1F45CD310096A044 /* FireParticleTrail.scnp in Resources */ = {isa = PBXBuildFile; fileRef = D71C355D1F45CD310096A044 /* FireParticleTrail.scnp */; };
+		D71C35601F45CD310096A044 /* FireParticleTrail.scnp in Resources */ = {isa = PBXBuildFile; fileRef = D71C355D1F45CD310096A044 /* FireParticleTrail.scnp */; };
+		D71C35611F45CD310096A044 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = D71C355E1F45CD310096A044 /* spark.png */; };
+		D71C35621F45CD310096A044 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = D71C355E1F45CD310096A044 /* spark.png */; };
 		D75ADF191F2BB9A0006CC229 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF181F2BB9A0006CC229 /* Peripheral.swift */; };
 		D75ADF1C1F2BBAD8006CC229 /* LeapMotionGestureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF1B1F2BBAD8006CC229 /* LeapMotionGestureService.swift */; };
 		D75ADF1E1F2BBB6E006CC229 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF1D1F2BBB63006CC229 /* Data+Extension.swift */; };
@@ -46,6 +54,10 @@
 
 /* Begin PBXFileReference section */
 		D704A6A91F3A42A000B11030 /* SharedExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SharedExtensions.swift; path = Shared/SharedExtensions.swift; sourceTree = "<group>"; };
+		D71C35571F45CCBB0096A044 /* SmokeParticleTrail.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = SmokeParticleTrail.scnp; sourceTree = "<group>"; };
+		D71C35581F45CCBB0096A044 /* smoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smoke.png; sourceTree = "<group>"; };
+		D71C355D1F45CD310096A044 /* FireParticleTrail.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = FireParticleTrail.scnp; sourceTree = "<group>"; };
+		D71C355E1F45CD310096A044 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		D74BEDE01F264979001C4256 /* LeapMotion Bluetooth Sender.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "LeapMotion Bluetooth Sender.entitlements"; sourceTree = "<group>"; };
 		D75ADF181F2BB9A0006CC229 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
 		D75ADF1B1F2BBAD8006CC229 /* LeapMotionGestureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeapMotionGestureService.swift; path = Shared/LeapMotionGestureService.swift; sourceTree = "<group>"; };
@@ -95,6 +107,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D71C35551F45CBE90096A044 /* SceneKit */ = {
+			isa = PBXGroup;
+			children = (
+				D71C35561F45CBFB0096A044 /* ParticleSystems */,
+			);
+			path = SceneKit;
+			sourceTree = "<group>";
+		};
+		D71C35561F45CBFB0096A044 /* ParticleSystems */ = {
+			isa = PBXGroup;
+			children = (
+				D71C35571F45CCBB0096A044 /* SmokeParticleTrail.scnp */,
+				D71C35581F45CCBB0096A044 /* smoke.png */,
+				D71C355D1F45CD310096A044 /* FireParticleTrail.scnp */,
+				D71C355E1F45CD310096A044 /* spark.png */,
+			);
+			path = ParticleSystems;
+			sourceTree = "<group>";
+		};
 		D75ADF161F2BB98C006CC229 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +137,7 @@
 		D75ADF1A1F2BBAB4006CC229 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D71C35551F45CBE90096A044 /* SceneKit */,
 				D75ADF1D1F2BBB63006CC229 /* Data+Extension.swift */,
 				D75ADF1B1F2BBAD8006CC229 /* LeapMotionGestureService.swift */,
 				D704A6A91F3A42A000B11030 /* SharedExtensions.swift */,
@@ -327,7 +359,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D71C35601F45CD310096A044 /* FireParticleTrail.scnp in Resources */,
+				D71C355A1F45CCBB0096A044 /* SmokeParticleTrail.scnp in Resources */,
 				D75ADF321F2BBEFC006CC229 /* LaunchScreen.storyboard in Resources */,
+				D71C35621F45CD310096A044 /* spark.png in Resources */,
+				D71C355C1F45CCBB0096A044 /* smoke.png in Resources */,
 				D75ADF2F1F2BBEFC006CC229 /* Assets.xcassets in Resources */,
 				D75ADF2D1F2BBEFC006CC229 /* Main.storyboard in Resources */,
 			);
@@ -337,8 +373,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D71C35591F45CCBB0096A044 /* SmokeParticleTrail.scnp in Resources */,
+				D71C35611F45CD310096A044 /* spark.png in Resources */,
+				D71C355F1F45CD310096A044 /* FireParticleTrail.scnp in Resources */,
 				D786D04C1F262D50007CF64B /* Assets.xcassets in Resources */,
 				D786D04F1F262D50007CF64B /* Main.storyboard in Resources */,
+				D71C355B1F45CCBB0096A044 /* smoke.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

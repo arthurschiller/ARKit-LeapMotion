@@ -11,6 +11,8 @@ import CoreGraphics
 
 protocol LeapServiceDelegate {
 //    func didUpdate(palmPosition: LeapService.PalmPosition)
+    func willUpdateData()
+    func didStopUpdatingData()
     func didUpdate(interactionBoxRepresentation: LeapInteractionBoxRepresentation)
     func didUpdate(handRepresentation: LeapHandRepresentation)
 }
@@ -19,6 +21,13 @@ class LeapService: NSObject, LeapListener {
     
     var delegate: LeapServiceDelegate?
     
+    private var isUpdatingData: Bool = false {
+        willSet {
+            if newValue != isUpdatingData {
+                newValue == true ? delegate?.willUpdateData() : delegate?.didStopUpdatingData()
+            }
+        }
+    }
     private var controller: LeapController?
     private var interactionBoxRepresentation: LeapInteractionBoxRepresentation? {
         didSet {
@@ -56,6 +65,7 @@ struct LeapInteractionBoxRepresentation {
 
 struct LeapHandRepresentation {
     let position: SCNVector3
+    let eulerAngles: SCNVector3
     let fingers: [LeapFingerRepresentation]
 }
 
@@ -108,6 +118,7 @@ extension LeapService {
     }
     
     func onDisconnect(_ notification: Notification!) {
+        isUpdatingData = false
         print("Disconnected")
     }
     
@@ -116,6 +127,7 @@ extension LeapService {
     }
     
     func onServiceDisconnect(_ notification: Notification!) {
+        isUpdatingData = false
         print("Service Disconnected")
     }
     
@@ -124,6 +136,7 @@ extension LeapService {
     }
     
     func onExit(_ notification: Notification!) {
+        isUpdatingData = false
         print("Exited")
     }
     
@@ -133,11 +146,13 @@ extension LeapService {
             let frame = controller.frame(0),
             let hands = frame.hands,
             let firstHand = hands.first as? LeapHand,
-            firstHand.isValid && firstHand.confidence > 0.4
+            firstHand.isValid// && firstHand.confidence > 0.05
         else {
+            isUpdatingData = false
             return
         }
         
+        isUpdatingData = true
         handRepresentation = firstHand.getRepresentation()
         
         /*if interactionBoxRepresentation == nil {
@@ -173,12 +188,18 @@ extension LeapHand {
             return nil
         }
         let position = SCNVector3(
-            x: CGFloat(stabilizedPalmPosition.x),
-            y: CGFloat(stabilizedPalmPosition.y),
-            z: CGFloat(stabilizedPalmPosition.z)
+            x: CGFloat(palmPosition.x),
+            y: CGFloat(palmPosition.y),
+            z: CGFloat(palmPosition.z)
+        )
+        let eulerAngles = SCNVector3(
+            x: CGFloat(direction.pitch),
+            y: CGFloat(-direction.yaw),
+            z: CGFloat(palmNormal.roll)
         )
         return LeapHandRepresentation(
             position: position,
+            eulerAngles: eulerAngles,
             fingers: fingerData
         )
     }
