@@ -51,16 +51,11 @@ class InteractiveARScene: SCNScene {
         rootNode.addChildNode(geometryNode)
     }
 
-    func updateGeometry(with data: LeapHandData) {
-//        geometryNode.position = SCNVector3(
-//            data.palmPos.x,
-//            data.palmPos.y,
-//            data.palmPos.z
-//        )
-        geometryNode.eulerAngles = SCNVector3(
-            data.palmRot.x,
-            data.palmRot.y,
-            data.palmRot.z
-        )
+    func updateGeometryPosition(with vector: SCNVector3) {
+        geometryNode.position = vector
+    }
+    
+    func updateGeometryEulerAngles(with vector: SCNVector3) {
+        geometryNode.eulerAngles = vector
     }
 }

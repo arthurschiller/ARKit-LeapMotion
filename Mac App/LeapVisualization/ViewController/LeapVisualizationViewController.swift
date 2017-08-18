@@ -47,31 +47,34 @@ class LeapVisualizationViewController: NSViewController {
     }
     
     private func prepareAndAdvertisePeripheralData(with handRepresentation: LeapHandRepresentation) {
-//        let pointablePos = CodableVector(
-//            x: handRepresentation.fingers[1].tipPosition.x.roundTo(places: decimalPlaces),
-//            y: handRepresentation.fingers[1].tipPosition.y.roundTo(places: decimalPlaces),
-//            z: handRepresentation.fingers[1].tipPosition.z.roundTo(places: decimalPlaces)
-//        )
-//        let palmPos = CodableVector(
-//            x: handRepresentation.position.x,
-//            y: handRepresentation.position.y,
-//            z: handRepresentation.position.z
-//        )
-        let palmRot = CodableVector(
-            x: handRepresentation.eulerAngles.x,
-            y: handRepresentation.eulerAngles.y,
-            z: handRepresentation.eulerAngles.z
-        )
-        let handData = LeapHandData(
-//            palmPos: palmPos,
-            palmRot: palmRot
-        )
-        guard let jsonData = try? jsonEncoder.encode(handData) else {
-            return
-        }
-        leapMotionGesturePeripheral.set(leapHandData: jsonData)
+        let lhDataString = "\(handRepresentation.position.x),\(handRepresentation.position.y),\(handRepresentation.position.z),\(handRepresentation.eulerAngles.x),\(handRepresentation.eulerAngles.y),\(handRepresentation.eulerAngles.z)"
+        leapMotionGesturePeripheral.set(lhDataString: lhDataString)
     }
 }
+
+func throttle(closure: () -> Void, limit: TimeInterval) {
+    var shouldWait = false
+    if !shouldWait {
+        closure()
+        shouldWait = true
+        delay(withSecond: limit, completion: {
+            shouldWait = false
+        })
+    }
+}
+
+//function throttle (callback, limit) {
+//    var wait = false;                 // Initially, we're not waiting
+//    return function () {              // We return a throttled function
+//        if (!wait) {                  // If we're not waiting
+//            callback.call();          // Execute users function
+//            wait = true;              // Prevent future invocations
+//            setTimeout(function () {  // After a period of time
+//                wait = false;         // And allow future invocations
+//            }, limit);
+//        }
+//    }
+//}
 
 extension LeapVisualizationViewController: LeapServiceDelegate {
     func willUpdateData() {

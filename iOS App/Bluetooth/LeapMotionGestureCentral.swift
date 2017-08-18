@@ -90,6 +90,7 @@ class LeapMotionGestureCentral: NSObject, CBCentralManagerDelegate, CBPeripheral
     
     //TODO: characteristics discovererd + read + subscribe + store
     var leapHandData: CBCharacteristic?
+    var lhData: CBCharacteristic?
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard error == nil else { return }
@@ -100,6 +101,8 @@ class LeapMotionGestureCentral: NSObject, CBCentralManagerDelegate, CBPeripheral
             switch $0.uuid {
             case LeapMotionGestureService.leapHandData:
                 leapHandData = $0
+            case LeapMotionGestureService.leapHandData:
+                lhData = $0
             default:
                 return
             }
@@ -115,6 +118,8 @@ class LeapMotionGestureCentral: NSObject, CBCentralManagerDelegate, CBPeripheral
         switch characteristic.uuid {
         case LeapMotionGestureService.leapHandData:
             response = .leapHandData(data)
+        case LeapMotionGestureService.lhData:
+            response = .lhData(data.string)
         default:
             return
         }
@@ -133,6 +138,7 @@ extension LeapMotionGestureCentral {
     
     enum Value {
         case leapHandData(Data)
+        case lhData(String)
     }
 }
 

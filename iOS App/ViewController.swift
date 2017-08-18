@@ -24,7 +24,7 @@ class ViewController: UIViewController {
             guard let data = leapHandData else {
                 return
             }
-            interactiveARScene.updateGeometry(with: data)
+//            interactiveARScene.updateGeometry(with: data)
         }
     }
 
@@ -59,6 +59,31 @@ class ViewController: UIViewController {
         sceneView.preferredFramesPerSecond = 60
         sceneView.antialiasingMode = .multisampling4X
     }
+    
+    private func handle(leapHandDataString: String) {
+        let floatValues = leapHandDataString.components(separatedBy: ",")
+            .flatMap {
+                ($0 as NSString).floatValue
+        }
+        guard floatValues.count == 6 else {
+            print("Received unexpected data.")
+            return
+        }
+        interactiveARScene.updateGeometryPosition(with:
+            SCNVector3(
+                x: floatValues[0],
+                y: floatValues[1],
+                z: floatValues[2]
+            )
+        )
+        interactiveARScene.updateGeometryEulerAngles(with:
+            SCNVector3(
+                x: floatValues[3],
+                y: floatValues[4],
+                z: floatValues[5]
+            )
+        )
+    }
 }
 
 extension ViewController: LeapMotionGestureCentralDelegate {
@@ -81,6 +106,9 @@ extension ViewController: LeapMotionGestureCentralDelegate {
             }
             print(leapHandData)
             self.leapHandData = leapHandData
+        case .lhData(let string):
+            connection.text = string
+            handle(leapHandDataString: string)
         }
     }
 }
