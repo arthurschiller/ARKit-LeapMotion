@@ -16,6 +16,10 @@
 		D71C35601F45CD310096A044 /* FireParticleTrail.scnp in Resources */ = {isa = PBXBuildFile; fileRef = D71C355D1F45CD310096A044 /* FireParticleTrail.scnp */; };
 		D71C35611F45CD310096A044 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = D71C355E1F45CD310096A044 /* spark.png */; };
 		D71C35621F45CD310096A044 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = D71C355E1F45CD310096A044 /* spark.png */; };
+		D7319A1E1F472F3D00C80333 /* LeapHandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7319A1D1F472F3D00C80333 /* LeapHandData.swift */; };
+		D7319A1F1F472F3F00C80333 /* LeapHandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7319A1D1F472F3D00C80333 /* LeapHandData.swift */; };
+		D7319A221F4739DF00C80333 /* InteractiveARScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7319A211F4739DF00C80333 /* InteractiveARScene.swift */; };
+		D7319A231F473A5400C80333 /* SharedExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D704A6A91F3A42A000B11030 /* SharedExtensions.swift */; };
 		D75ADF191F2BB9A0006CC229 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF181F2BB9A0006CC229 /* Peripheral.swift */; };
 		D75ADF1C1F2BBAD8006CC229 /* LeapMotionGestureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF1B1F2BBAD8006CC229 /* LeapMotionGestureService.swift */; };
 		D75ADF1E1F2BBB6E006CC229 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF1D1F2BBB63006CC229 /* Data+Extension.swift */; };
@@ -58,6 +62,8 @@
 		D71C35581F45CCBB0096A044 /* smoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smoke.png; sourceTree = "<group>"; };
 		D71C355D1F45CD310096A044 /* FireParticleTrail.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = FireParticleTrail.scnp; sourceTree = "<group>"; };
 		D71C355E1F45CD310096A044 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		D7319A1D1F472F3D00C80333 /* LeapHandData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeapHandData.swift; path = Shared/LeapHandData.swift; sourceTree = "<group>"; };
+		D7319A211F4739DF00C80333 /* InteractiveARScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveARScene.swift; sourceTree = "<group>"; };
 		D74BEDE01F264979001C4256 /* LeapMotion Bluetooth Sender.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "LeapMotion Bluetooth Sender.entitlements"; sourceTree = "<group>"; };
 		D75ADF181F2BB9A0006CC229 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
 		D75ADF1B1F2BBAD8006CC229 /* LeapMotionGestureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeapMotionGestureService.swift; path = Shared/LeapMotionGestureService.swift; sourceTree = "<group>"; };
@@ -126,6 +132,14 @@
 			path = ParticleSystems;
 			sourceTree = "<group>";
 		};
+		D7319A201F47397200C80333 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				D7319A211F4739DF00C80333 /* InteractiveARScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		D75ADF161F2BB98C006CC229 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +155,7 @@
 				D75ADF1D1F2BBB63006CC229 /* Data+Extension.swift */,
 				D75ADF1B1F2BBAD8006CC229 /* LeapMotionGestureService.swift */,
 				D704A6A91F3A42A000B11030 /* SharedExtensions.swift */,
+				D7319A1D1F472F3D00C80333 /* LeapHandData.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -148,6 +163,7 @@
 		D75ADF261F2BBEFC006CC229 /* iOS App */ = {
 			isa = PBXGroup;
 			children = (
+				D7319A201F47397200C80333 /* Scenes */,
 				D75ADF3A1F2BD29E006CC229 /* Bluetooth */,
 				D75ADF271F2BBEFC006CC229 /* AppDelegate.swift */,
 				D75ADF291F2BBEFC006CC229 /* ViewController.swift */,
@@ -389,7 +405,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7319A231F473A5400C80333 /* SharedExtensions.swift in Sources */,
+				D7319A1F1F472F3F00C80333 /* LeapHandData.swift in Sources */,
 				D75ADF391F2BD26D006CC229 /* LeapMotionGestureService.swift in Sources */,
+				D7319A221F4739DF00C80333 /* InteractiveARScene.swift in Sources */,
 				D75ADF2A1F2BBEFC006CC229 /* ViewController.swift in Sources */,
 				D75ADF381F2BD26A006CC229 /* Data+Extension.swift in Sources */,
 				D75ADF3C1F2BD2B5006CC229 /* LeapMotionGestureCentral.swift in Sources */,
@@ -403,6 +422,7 @@
 			files = (
 				D75ADF1C1F2BBAD8006CC229 /* LeapMotionGestureService.swift in Sources */,
 				D704A6AA1F3A42A000B11030 /* SharedExtensions.swift in Sources */,
+				D7319A1E1F472F3D00C80333 /* LeapHandData.swift in Sources */,
 				D786D0911F26348E007CF64B /* LeapObjectiveC.mm in Sources */,
 				D786D04A1F262D50007CF64B /* ViewController.swift in Sources */,
 				D786D0481F262D50007CF64B /* AppDelegate.swift in Sources */,

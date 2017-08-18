@@ -89,7 +89,7 @@ class LeapMotionGestureCentral: NSObject, CBCentralManagerDelegate, CBPeripheral
     }
     
     //TODO: characteristics discovererd + read + subscribe + store
-    var testString: CBCharacteristic?
+    var leapHandData: CBCharacteristic?
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard error == nil else { return }
@@ -98,8 +98,8 @@ class LeapMotionGestureCentral: NSObject, CBCentralManagerDelegate, CBPeripheral
             peripheral.readValue(for: $0)
             peripheral.setNotifyValue(true, for: $0)
             switch $0.uuid {
-            case LeapMotionGestureService.testStringUUID:
-                testString = $0
+            case LeapMotionGestureService.leapHandData:
+                leapHandData = $0
             default:
                 return
             }
@@ -109,21 +109,12 @@ class LeapMotionGestureCentral: NSObject, CBCentralManagerDelegate, CBPeripheral
     //TODO: value updated + Main - Action.read(Value)
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         guard error == nil else { return }
-        guard let string = characteristic.value?.string else { return }
-        
+        guard let data = characteristic.value else { return }
         let response: Value
         
         switch characteristic.uuid {
-        case LeapMotionGestureService.testStringUUID:
-            response = .testString(string)
-//        case LeapMotionGestureService.nameCharacteristicUUID:
-//            response = .name(string)
-//        case LeapMotionGestureService.alphaCharacteristicUUID:
-//            guard let int = Int(string) else { return }
-//            response = .alpha(CGFloat(int) / 100)
-//        case LeapMotionGestureService.colorCharacteristicUUID:
-//            guard let color = UIColor(hex: string) else { return }
-//            response = .color(color)
+        case LeapMotionGestureService.leapHandData:
+            response = .leapHandData(data)
         default:
             return
         }
@@ -133,7 +124,6 @@ class LeapMotionGestureCentral: NSObject, CBCentralManagerDelegate, CBPeripheral
     }
     
 }
-
 extension LeapMotionGestureCentral {
     enum Action {
         case connectPeripheral(Bool)
@@ -142,9 +132,7 @@ extension LeapMotionGestureCentral {
     }
     
     enum Value {
-        case testString(String)
-//        case name(String)
-//        case alpha(CGFloat)
-//        case color(UIColor)
+        case leapHandData(Data)
     }
 }
+

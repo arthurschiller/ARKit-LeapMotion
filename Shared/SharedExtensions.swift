@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 extension Int {
     var degreesToRadians: Double { return Double(self) * .pi / 180 }

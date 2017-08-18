@@ -8,7 +8,6 @@
 import CoreBluetooth
 
 class LeapMotionGesturePeripheral: NSObject {
-    
     private let manager: CBPeripheralManager
     private let services: [CBMutableService]
     private let peripheralName: String
@@ -23,14 +22,17 @@ class LeapMotionGesturePeripheral: NSObject {
         self.manager.delegate = self
     }
     
-    var testString: String = "Hello World" {
+    private var leapHandData: Data? = nil {
         didSet {
-            updateValue(forCharacteristic: LeapMotionGestureService.testStringUUID)
+            guard leapHandData != nil else {
+                return
+            }
+            updateValue(forCharacteristic: LeapMotionGestureService.leapHandData)
         }
     }
     
-    func set(testString: String) {
-        self.testString = testString
+    func set(leapHandData: Data) {
+        self.leapHandData = leapHandData
     }
     
     private func updateValue(forCharacteristic uuid: CBUUID) {
@@ -59,8 +61,8 @@ class LeapMotionGesturePeripheral: NSObject {
     
     func value(forCharacteristic uuid: CBUUID) -> Data? {
         switch uuid {
-        case LeapMotionGestureService.testStringUUID:
-            return testString.data(using: .utf8)
+        case LeapMotionGestureService.leapHandData:
+            return leapHandData
         default:
             return nil
         }

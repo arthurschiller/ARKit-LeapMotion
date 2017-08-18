@@ -8,10 +8,10 @@
 import CoreBluetooth
 
 enum LeapMotionGestureService {
-    static let uuid: CBUUID = CBUUID(string: "B7AC06DC-09FF-40ED-B03A-55D09B08EB4A")
-    static let testStringUUID: CBUUID = CBUUID(string: "B7AC06DC-09FF-40ED-B03A-55D09B080001")
+    static let uuid: CBUUID = CBUUID(string: "54A9FEA5-E8F5-4D50-A4AA-759FCC0F0821")
+    static let leapHandData: CBUUID = CBUUID(string: "54A9FEA5-E8F5-4D50-A4AA-759FCC000001")
     
     static let characteristics: [CBUUID] = [
-        testStringUUID,
+        leapHandData
     ]
 }

@@ -6,30 +6,58 @@
 //
 
 import UIKit
+import SceneKit
 
 class ViewController: UIViewController {
     
     @IBOutlet weak var connection: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     
-    let central: LeapMotionGestureCentral = LeapMotionGestureCentral()
-    let demoView = UIView()
+    private let central: LeapMotionGestureCentral = LeapMotionGestureCentral()
+    private let jsonDecoder = JSONDecoder()
+    
+    private let sceneView = SCNView()
+    private let interactiveARScene = InteractiveARScene()
+    
+    var leapHandData: LeapHandData? = nil {
+        didSet {
+            guard let data = leapHandData else {
+                return
+            }
+            interactiveARScene.updateGeometry(with: data)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        commonInit()
+    }
+    
+    private func commonInit() {
         valueLabel.text = ""
         central.delegate = self
+        setupScene()
+    }
+    
+    private func setupScene() {
+        sceneView.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(sceneView, at: 0)
+        NSLayoutConstraint.activate(
+            [
+                sceneView.topAnchor.constraint(equalTo: view.topAnchor),
+                sceneView.rightAnchor.constraint(equalTo: view.rightAnchor),
+                sceneView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                sceneView.leftAnchor.constraint(equalTo: view.leftAnchor)
+            ]
+        )
         
-        demoView.translatesAutoresizingMaskIntoConstraints = false
-        demoView.backgroundColor = UIColor.green
-        view.addSubview(demoView)
-        
-        NSLayoutConstraint.activate([
-            demoView.widthAnchor.constraint(equalToConstant: 100),
-            demoView.heightAnchor.constraint(equalToConstant: 100),
-            demoView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            demoView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100)
-        ])
+        sceneView.scene = interactiveARScene
+        sceneView.backgroundColor = .cyan
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.allowsCameraControl = true
+        sceneView.showsStatistics = true
+        sceneView.preferredFramesPerSecond = 60
+        sceneView.antialiasingMode = .multisampling4X
     }
 }
 
@@ -37,7 +65,7 @@ extension ViewController: LeapMotionGestureCentralDelegate {
     func central(_ central: LeapMotionGestureCentral, didPerformAction action: LeapMotionGestureCentral.Action) {
         switch action {
         case .read(let value):
-            update(value)
+            handle(value: value)
         case .connectPeripheral(_):
             connection.text = "connected"
         case .disconnectPeripheral:
@@ -45,27 +73,14 @@ extension ViewController: LeapMotionGestureCentralDelegate {
         }
     }
     
-    private func update(_ value: LeapMotionGestureCentral.Value) {
+    private func handle(value: LeapMotionGestureCentral.Value) {
         switch value {
-        case .testString(let extracted):
-            
-//            print(extracted)
-            guard let floatValue = Float(extracted) else {
+        case .leapHandData(let extractedData):
+            guard let leapHandData = try? self.jsonDecoder.decode(LeapHandData.self, from: extractedData) else {
                 return
             }
-            print(floatValue)
-            
-            let translationX: CGAffineTransform = .init(translationX: CGFloat(floatValue), y: 0)
-            demoView.transform = translationX
-            
-//            guard let translationX = NumberFormatter().number(from: extracted) else {
-//                print("unable to format number")
-//                return
-//            }
-//            print(translationX)
-//            let string = "\(extracted)"
-//            print(string)
-//            valueLabel.text = string
+            print(leapHandData)
+            self.leapHandData = leapHandData
         }
     }
 }

@@ -28,7 +28,7 @@ class ViewController: NSViewController {
             return
         }
         print(textField.stringValue)
-        leapMotionGesturePeripheral.set(testString: textField.stringValue)
+//        leapMotionGesturePeripheral.set(testString: textField.stringValue)
     }
     
     override var representedObject: Any? {

@@ -187,15 +187,16 @@ extension LeapHand {
         guard let fingerData = getFingerRepresentations() else {
             return nil
         }
+        let roundingPlaces = 2
         let position = SCNVector3(
-            x: CGFloat(palmPosition.x),
-            y: CGFloat(palmPosition.y),
-            z: CGFloat(palmPosition.z)
+            x: CGFloat(palmPosition.x).roundTo(places: roundingPlaces),
+            y: CGFloat(palmPosition.y).roundTo(places: roundingPlaces),
+            z: CGFloat(palmPosition.z).roundTo(places: roundingPlaces)
         )
         let eulerAngles = SCNVector3(
-            x: CGFloat(direction.pitch),
-            y: CGFloat(-direction.yaw),
-            z: CGFloat(palmNormal.roll)
+            x: CGFloat(direction.pitch).roundTo(places: roundingPlaces),
+            y: CGFloat(-direction.yaw).roundTo(places: roundingPlaces),
+            z: CGFloat(palmNormal.roll).roundTo(places: roundingPlaces)
         )
         return LeapHandRepresentation(
             position: position,

@@ -21,13 +21,14 @@ class LeapVisualizationViewController: NSViewController {
     
     private let leapMotionGesturePeripheral = LeapMotionGesturePeripheral()
     private let leapService = LeapService()
+    private let jsonEncoder = JSONEncoder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
     }
     private func commonInit() {
-//        leapMotionGesturePeripheral.startAdvertising()
+        leapMotionGesturePeripheral.startAdvertising()
         leapService.delegate = self
         leapService.run()
         
@@ -43,6 +44,32 @@ class LeapVisualizationViewController: NSViewController {
             sceneView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             sceneView.leftAnchor.constraint(equalTo: view.leftAnchor)
         ])
+    }
+    
+    private func prepareAndAdvertisePeripheralData(with handRepresentation: LeapHandRepresentation) {
+//        let pointablePos = CodableVector(
+//            x: handRepresentation.fingers[1].tipPosition.x.roundTo(places: decimalPlaces),
+//            y: handRepresentation.fingers[1].tipPosition.y.roundTo(places: decimalPlaces),
+//            z: handRepresentation.fingers[1].tipPosition.z.roundTo(places: decimalPlaces)
+//        )
+//        let palmPos = CodableVector(
+//            x: handRepresentation.position.x,
+//            y: handRepresentation.position.y,
+//            z: handRepresentation.position.z
+//        )
+        let palmRot = CodableVector(
+            x: handRepresentation.eulerAngles.x,
+            y: handRepresentation.eulerAngles.y,
+            z: handRepresentation.eulerAngles.z
+        )
+        let handData = LeapHandData(
+//            palmPos: palmPos,
+            palmRot: palmRot
+        )
+        guard let jsonData = try? jsonEncoder.encode(handData) else {
+            return
+        }
+        leapMotionGesturePeripheral.set(leapHandData: jsonData)
     }
 }
 
@@ -62,6 +89,7 @@ extension LeapVisualizationViewController: LeapServiceDelegate {
     
     func didUpdate(handRepresentation: LeapHandRepresentation) {
         sceneManager?.leapHandRepresentation = handRepresentation
+        prepareAndAdvertisePeripheralData(with: handRepresentation)
     }
 }
 
@@ -182,7 +210,6 @@ class LeapVisualizationScene: SCNScene {
     }
     
     private func setupHandNode() {
-        handNode.opacity = 0
         rootNode.addChildNode(handNode)
     }
     
@@ -212,7 +239,8 @@ class LeapVisualizationScene: SCNScene {
             [particleNode, geometryNode].forEach { toggle(node: $0, show: false) }
         case .fingerPainting:
             toggle(node: particleNode, show: true)
-            [handNode, geometryNode].forEach { toggle(node: $0, show: false) }
+            toggle(node: handNode, show: true)
+            toggle(node: geometryNode, show: false)
         case .moveAndRotate:
             toggle(node: geometryNode, show: true)
             [particleNode, handNode].forEach { toggle(node: $0, show: false) }
@@ -232,8 +260,9 @@ class LeapVisualizationScene: SCNScene {
     func updateHand(with data: LeapHandRepresentation) {
         switch mode {
         case .showSkeleton:
-            self.handNode.update(with: data)
+            handNode.update(with: data)
         case .fingerPainting:
+            handNode.update(with: data)
             particleNode.position = data.fingers[1].tipPosition
         case .moveAndRotate:
             geometryNode.position = data.position
