@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,6 +50,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="171.36431784107947"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="Jg7-3R-lX8">
+            <objects>
+                <viewController id="oKL-tl-LP7" customClass="MainViewController" customModule="iOS_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rbj-BW-EIf"/>
+                        <viewControllerLayoutGuide type="bottom" id="w5l-ub-jYA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R46-Pg-ZMC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sM5-4K-CRD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </arscnView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="w5l-ub-jYA" firstAttribute="top" secondItem="sM5-4K-CRD" secondAttribute="bottom" id="4VF-mJ-gcb"/>
+                            <constraint firstItem="sM5-4K-CRD" firstAttribute="leading" secondItem="R46-Pg-ZMC" secondAttribute="leading" id="Rrf-qK-73C"/>
+                            <constraint firstAttribute="trailing" secondItem="sM5-4K-CRD" secondAttribute="trailing" id="ZJ0-YP-tYO"/>
+                            <constraint firstItem="sM5-4K-CRD" firstAttribute="top" secondItem="R46-Pg-ZMC" secondAttribute="top" id="uX3-EL-ISl"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="arSceneView" destination="sM5-4K-CRD" id="R00-0t-iHD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4B7-Qr-fCk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137" y="895"/>
         </scene>
     </scenes>
 </document>

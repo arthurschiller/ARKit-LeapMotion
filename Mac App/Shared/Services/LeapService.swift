@@ -15,12 +15,14 @@ protocol LeapServiceDelegate {
     func didStopUpdatingData()
     func didUpdate(interactionBoxRepresentation: LeapInteractionBoxRepresentation)
     func didUpdate(handRepresentation: LeapHandRepresentation)
+    func didUpdate(handDataString: String)
 }
 
 class LeapService: NSObject, LeapListener {
     
     var delegate: LeapServiceDelegate?
     
+    private var timer: Timer? = nil
     private var isUpdatingData: Bool = false {
         willSet {
             if newValue != isUpdatingData {
@@ -42,17 +44,46 @@ class LeapService: NSObject, LeapListener {
             guard let data = handRepresentation else {
                 return
             }
+            updateHandDataString()
+            let dataString = "\(data.position.x),\(data.position.y),\(data.position.z)"
+            delegate?.didUpdate(handDataString: dataString)
             delegate?.didUpdate(handRepresentation: data)
         }
     }
     
+    deinit {
+        timer?.invalidate()
+    }
+    
     override init() {
         super.init()
+        commonInit()
     }
     
     func run() {
         controller = LeapController()
         controller?.addListener(self)
+    }
+    
+    private func commonInit() {
+//        timer = Timer.scheduledTimer(
+//            timeInterval: 0.016,
+//            target: self,
+//            selector: #selector(updateHandDataString),
+//            userInfo: nil,
+//            repeats: true
+//        )
+    }
+    
+    @objc private func updateHandDataString() {
+//        guard
+//            isUpdatingData,
+//            let data = handRepresentation else {
+//            return
+//        }
+//        print("update string")
+//        let dataString = "\(data.position.x),\(data.position.y),\(data.position.z)"
+//        delegate?.didUpdate(handDataString: dataString)
     }
 }
 
@@ -154,6 +185,9 @@ extension LeapService {
         
         isUpdatingData = true
         handRepresentation = firstHand.getRepresentation()
+        
+        let translation = firstHand.translation(controller.frame(1))
+//        print(translation)
         
         /*if interactionBoxRepresentation == nil {
             guard frame.interactionBox() != controller.frame(1).interactionBox() && frame.interactionBox().isValid else {

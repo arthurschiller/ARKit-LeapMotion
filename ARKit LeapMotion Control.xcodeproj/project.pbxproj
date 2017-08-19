@@ -16,8 +16,6 @@
 		D71C35601F45CD310096A044 /* FireParticleTrail.scnp in Resources */ = {isa = PBXBuildFile; fileRef = D71C355D1F45CD310096A044 /* FireParticleTrail.scnp */; };
 		D71C35611F45CD310096A044 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = D71C355E1F45CD310096A044 /* spark.png */; };
 		D71C35621F45CD310096A044 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = D71C355E1F45CD310096A044 /* spark.png */; };
-		D7319A1E1F472F3D00C80333 /* LeapHandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7319A1D1F472F3D00C80333 /* LeapHandData.swift */; };
-		D7319A1F1F472F3F00C80333 /* LeapHandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7319A1D1F472F3D00C80333 /* LeapHandData.swift */; };
 		D7319A221F4739DF00C80333 /* InteractiveARScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7319A211F4739DF00C80333 /* InteractiveARScene.swift */; };
 		D7319A231F473A5400C80333 /* SharedExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D704A6A91F3A42A000B11030 /* SharedExtensions.swift */; };
 		D75ADF191F2BB9A0006CC229 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF181F2BB9A0006CC229 /* Peripheral.swift */; };
@@ -38,6 +36,9 @@
 		D786D0911F26348E007CF64B /* LeapObjectiveC.mm in Sources */ = {isa = PBXBuildFile; fileRef = D786D08E1F263486007CF64B /* LeapObjectiveC.mm */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker"; }; };
 		D786D0921F263494007CF64B /* libLeap.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D786D0901F263486007CF64B /* libLeap.dylib */; };
 		D786D0931F2634B0007CF64B /* libLeap.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = D786D0901F263486007CF64B /* libLeap.dylib */; };
+		D79532871F487712009B39FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79532861F487712009B39FC /* MainViewController.swift */; };
+		D795328A1F48786E009B39FC /* InteractiveARSceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79532891F48786E009B39FC /* InteractiveARSceneManager.swift */; };
+		D795328D1F4890FF009B39FC /* NodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D795328C1F4890FF009B39FC /* NodeGenerator.swift */; };
 		D79D21F71F3F2AE4001EFEDF /* LeapVisualizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79D21F61F3F2AE4001EFEDF /* LeapVisualizationViewController.swift */; };
 		D7ECB88F1F3F370600D0B406 /* LeapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7ECB88E1F3F370600D0B406 /* LeapService.swift */; };
 /* End PBXBuildFile section */
@@ -62,7 +63,6 @@
 		D71C35581F45CCBB0096A044 /* smoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smoke.png; sourceTree = "<group>"; };
 		D71C355D1F45CD310096A044 /* FireParticleTrail.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = FireParticleTrail.scnp; sourceTree = "<group>"; };
 		D71C355E1F45CD310096A044 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
-		D7319A1D1F472F3D00C80333 /* LeapHandData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeapHandData.swift; path = Shared/LeapHandData.swift; sourceTree = "<group>"; };
 		D7319A211F4739DF00C80333 /* InteractiveARScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveARScene.swift; sourceTree = "<group>"; };
 		D74BEDE01F264979001C4256 /* LeapMotion Bluetooth Sender.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "LeapMotion Bluetooth Sender.entitlements"; sourceTree = "<group>"; };
 		D75ADF181F2BB9A0006CC229 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
@@ -90,6 +90,9 @@
 		D786D08D1F263486007CF64B /* LeapObjectiveC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeapObjectiveC.h; sourceTree = "<group>"; };
 		D786D08E1F263486007CF64B /* LeapObjectiveC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LeapObjectiveC.mm; sourceTree = "<group>"; };
 		D786D0901F263486007CF64B /* libLeap.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libLeap.dylib; sourceTree = "<group>"; };
+		D79532861F487712009B39FC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		D79532891F48786E009B39FC /* InteractiveARSceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveARSceneManager.swift; sourceTree = "<group>"; };
+		D795328C1F4890FF009B39FC /* NodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeGenerator.swift; sourceTree = "<group>"; };
 		D79D21F61F3F2AE4001EFEDF /* LeapVisualizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeapVisualizationViewController.swift; sourceTree = "<group>"; };
 		D7ECB88E1F3F370600D0B406 /* LeapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeapService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,14 +135,6 @@
 			path = ParticleSystems;
 			sourceTree = "<group>";
 		};
-		D7319A201F47397200C80333 /* Scenes */ = {
-			isa = PBXGroup;
-			children = (
-				D7319A211F4739DF00C80333 /* InteractiveARScene.swift */,
-			);
-			path = Scenes;
-			sourceTree = "<group>";
-		};
 		D75ADF161F2BB98C006CC229 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,7 +150,6 @@
 				D75ADF1D1F2BBB63006CC229 /* Data+Extension.swift */,
 				D75ADF1B1F2BBAD8006CC229 /* LeapMotionGestureService.swift */,
 				D704A6A91F3A42A000B11030 /* SharedExtensions.swift */,
-				D7319A1D1F472F3D00C80333 /* LeapHandData.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -163,10 +157,12 @@
 		D75ADF261F2BBEFC006CC229 /* iOS App */ = {
 			isa = PBXGroup;
 			children = (
-				D7319A201F47397200C80333 /* Scenes */,
+				D795328B1F4890EB009B39FC /* Utilities */,
+				D79532881F487844009B39FC /* Manager */,
+				D79532841F4876BF009B39FC /* UI Components */,
+				D79532831F4876B5009B39FC /* ViewController */,
 				D75ADF3A1F2BD29E006CC229 /* Bluetooth */,
 				D75ADF271F2BBEFC006CC229 /* AppDelegate.swift */,
-				D75ADF291F2BBEFC006CC229 /* ViewController.swift */,
 				D75ADF2B1F2BBEFC006CC229 /* Main.storyboard */,
 				D75ADF2E1F2BBEFC006CC229 /* Assets.xcassets */,
 				D75ADF301F2BBEFC006CC229 /* LaunchScreen.storyboard */,
@@ -256,6 +252,47 @@
 				D786D0901F263486007CF64B /* libLeap.dylib */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		D79532831F4876B5009B39FC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D75ADF291F2BBEFC006CC229 /* ViewController.swift */,
+				D79532861F487712009B39FC /* MainViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D79532841F4876BF009B39FC /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				D79532851F4876CC009B39FC /* Scenes */,
+			);
+			path = "UI Components";
+			sourceTree = "<group>";
+		};
+		D79532851F4876CC009B39FC /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				D7319A211F4739DF00C80333 /* InteractiveARScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		D79532881F487844009B39FC /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D79532891F48786E009B39FC /* InteractiveARSceneManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		D795328B1F4890EB009B39FC /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D795328C1F4890FF009B39FC /* NodeGenerator.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		D79D21F41F3F2A7B001EFEDF /* LeapVisualization */ = {
@@ -406,12 +443,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7319A231F473A5400C80333 /* SharedExtensions.swift in Sources */,
-				D7319A1F1F472F3F00C80333 /* LeapHandData.swift in Sources */,
 				D75ADF391F2BD26D006CC229 /* LeapMotionGestureService.swift in Sources */,
 				D7319A221F4739DF00C80333 /* InteractiveARScene.swift in Sources */,
+				D795328D1F4890FF009B39FC /* NodeGenerator.swift in Sources */,
 				D75ADF2A1F2BBEFC006CC229 /* ViewController.swift in Sources */,
 				D75ADF381F2BD26A006CC229 /* Data+Extension.swift in Sources */,
+				D79532871F487712009B39FC /* MainViewController.swift in Sources */,
 				D75ADF3C1F2BD2B5006CC229 /* LeapMotionGestureCentral.swift in Sources */,
+				D795328A1F48786E009B39FC /* InteractiveARSceneManager.swift in Sources */,
 				D75ADF281F2BBEFC006CC229 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,7 +461,6 @@
 			files = (
 				D75ADF1C1F2BBAD8006CC229 /* LeapMotionGestureService.swift in Sources */,
 				D704A6AA1F3A42A000B11030 /* SharedExtensions.swift in Sources */,
-				D7319A1E1F472F3D00C80333 /* LeapHandData.swift in Sources */,
 				D786D0911F26348E007CF64B /* LeapObjectiveC.mm in Sources */,
 				D786D04A1F262D50007CF64B /* ViewController.swift in Sources */,
 				D786D0481F262D50007CF64B /* AppDelegate.swift in Sources */,
@@ -494,7 +532,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = CM9ZUQ5C92;
+				DEVELOPMENT_TEAM = 7MS9CDJH3L;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -557,7 +595,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = CM9ZUQ5C92;
+				DEVELOPMENT_TEAM = 7MS9CDJH3L;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -626,7 +664,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = CM9ZUQ5C92;
+				DEVELOPMENT_TEAM = 7MS9CDJH3L;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -695,7 +733,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = CM9ZUQ5C92;
+				DEVELOPMENT_TEAM = 7MS9CDJH3L;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

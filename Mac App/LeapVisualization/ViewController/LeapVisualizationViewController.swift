@@ -27,6 +27,7 @@ class LeapVisualizationViewController: NSViewController {
         super.viewDidLoad()
         commonInit()
     }
+    
     private func commonInit() {
         leapMotionGesturePeripheral.startAdvertising()
         leapService.delegate = self
@@ -46,35 +47,12 @@ class LeapVisualizationViewController: NSViewController {
         ])
     }
     
-    private func prepareAndAdvertisePeripheralData(with handRepresentation: LeapHandRepresentation) {
-        let lhDataString = "\(handRepresentation.position.x),\(handRepresentation.position.y),\(handRepresentation.position.z),\(handRepresentation.eulerAngles.x),\(handRepresentation.eulerAngles.y),\(handRepresentation.eulerAngles.z)"
-        leapMotionGesturePeripheral.set(lhDataString: lhDataString)
-    }
-}
-
-func throttle(closure: () -> Void, limit: TimeInterval) {
-    var shouldWait = false
-    if !shouldWait {
-        closure()
-        shouldWait = true
-        delay(withSecond: limit, completion: {
-            shouldWait = false
-        })
-    }
-}
-
-//function throttle (callback, limit) {
-//    var wait = false;                 // Initially, we're not waiting
-//    return function () {              // We return a throttled function
-//        if (!wait) {                  // If we're not waiting
-//            callback.call();          // Execute users function
-//            wait = true;              // Prevent future invocations
-//            setTimeout(function () {  // After a period of time
-//                wait = false;         // And allow future invocations
-//            }, limit);
-//        }
+//    private func prepareAndAdvertisePeripheralData(with handRepresentation: LeapHandRepresentation) {
+////        let dataString = "\(handRepresentation.position.x),\(handRepresentation.position.y),\(handRepresentation.position.z),\(handRepresentation.eulerAngles.x),\(handRepresentation.eulerAngles.y),\(handRepresentation.eulerAngles.z)"
+////        let dataString = "\(handRepresentation.position.x),\(handRepresentation.position.y),\(handRepresentation.position.z)"
+////        leapMotionGesturePeripheral.set(handDataString: dataString)
 //    }
-//}
+}
 
 extension LeapVisualizationViewController: LeapServiceDelegate {
     func willUpdateData() {
@@ -92,7 +70,10 @@ extension LeapVisualizationViewController: LeapServiceDelegate {
     
     func didUpdate(handRepresentation: LeapHandRepresentation) {
         sceneManager?.leapHandRepresentation = handRepresentation
-        prepareAndAdvertisePeripheralData(with: handRepresentation)
+    }
+    
+    func didUpdate(handDataString: String) {
+        leapMotionGesturePeripheral.set(handDataString: handDataString)
     }
 }
 
@@ -123,7 +104,7 @@ class LeapVisualizationSceneManager: NSObject, SCNSceneRendererDelegate {
     private func setupScene() {
         sceneView.scene = scene
         sceneView.backgroundColor = .cyan
-        sceneView.autoenablesDefaultLighting = true
+        sceneView.autoenablesDefaultLighting = false
         sceneView.allowsCameraControl = true
         sceneView.showsStatistics = true
         sceneView.preferredFramesPerSecond = 60
@@ -144,7 +125,7 @@ class LeapVisualizationScene: SCNScene {
         case moveAndRotate
     }
     
-    var mode: Mode = .moveAndRotate {
+    var mode: Mode = .showSkeleton {
         didSet {
             updateMode()
         }
@@ -389,7 +370,7 @@ class LeapVisualizationFingerNode: SCNNode {
     }
     
     private func makeJoint() -> SCNNode {
-        let geometry = SCNSphere(radius: 1)
+        let geometry = SCNSphere(radius: 2)
         return SCNNode(geometry: geometry)
     }
     

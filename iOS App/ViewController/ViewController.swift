@@ -13,20 +13,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var connection: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     
-    private let central: LeapMotionGestureCentral = LeapMotionGestureCentral()
-    private let jsonDecoder = JSONDecoder()
+    fileprivate let central: LeapMotionGestureCentral = LeapMotionGestureCentral()
+    fileprivate let jsonDecoder = JSONDecoder()
     
-    private let sceneView = SCNView()
-    private let interactiveARScene = InteractiveARScene()
+    fileprivate let sceneView = SCNView()
+    fileprivate let interactiveARScene = InteractiveARScene()
     
-    var leapHandData: LeapHandData? = nil {
-        didSet {
-            guard let data = leapHandData else {
-                return
-            }
-//            interactiveARScene.updateGeometry(with: data)
-        }
-    }
+    fileprivate let backgroundQueue = DispatchQueue(
+        label: "com.arthurschiller.backgroundQueue",
+        qos: DispatchQoS.userInitiated
+    )
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,29 +56,34 @@ class ViewController: UIViewController {
         sceneView.antialiasingMode = .multisampling4X
     }
     
-    private func handle(leapHandDataString: String) {
-        let floatValues = leapHandDataString.components(separatedBy: ",")
-            .flatMap {
-                ($0 as NSString).floatValue
+    private func handle(handDataString: String) {
+        backgroundQueue.async {
+            let floatValues = handDataString.components(separatedBy: ",")
+                .flatMap {
+                    ($0 as NSString).floatValue
+            }
+            guard floatValues.count == 3 else {
+                print("Received unexpected data.")
+                return
+            }
+            
+            DispatchQueue.main.sync {
+                self.interactiveARScene.updateGeometryPosition(with:
+                    SCNVector3(
+                        x: floatValues[0],
+                        y: floatValues[1],
+                        z: floatValues[2]
+                    )
+                )
+            }
         }
-        guard floatValues.count == 6 else {
-            print("Received unexpected data.")
-            return
-        }
-        interactiveARScene.updateGeometryPosition(with:
-            SCNVector3(
-                x: floatValues[0],
-                y: floatValues[1],
-                z: floatValues[2]
-            )
-        )
-        interactiveARScene.updateGeometryEulerAngles(with:
-            SCNVector3(
-                x: floatValues[3],
-                y: floatValues[4],
-                z: floatValues[5]
-            )
-        )
+//        interactiveARScene.updateGeometryEulerAngles(with:
+//            SCNVector3(
+//                x: floatValues[3],
+//                y: floatValues[4],
+//                z: floatValues[5]
+//            )
+//        )
     }
 }
 
@@ -100,15 +101,9 @@ extension ViewController: LeapMotionGestureCentralDelegate {
     
     private func handle(value: LeapMotionGestureCentral.Value) {
         switch value {
-        case .leapHandData(let extractedData):
-            guard let leapHandData = try? self.jsonDecoder.decode(LeapHandData.self, from: extractedData) else {
-                return
-            }
-            print(leapHandData)
-            self.leapHandData = leapHandData
-        case .lhData(let string):
+        case .handData(let string):
             connection.text = string
-            handle(leapHandDataString: string)
+            handle(handDataString: string)
         }
     }
 }

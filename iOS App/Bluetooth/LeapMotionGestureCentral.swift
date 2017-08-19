@@ -89,8 +89,7 @@ class LeapMotionGestureCentral: NSObject, CBCentralManagerDelegate, CBPeripheral
     }
     
     //TODO: characteristics discovererd + read + subscribe + store
-    var leapHandData: CBCharacteristic?
-    var lhData: CBCharacteristic?
+    var handData: CBCharacteristic?
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard error == nil else { return }
@@ -99,10 +98,8 @@ class LeapMotionGestureCentral: NSObject, CBCentralManagerDelegate, CBPeripheral
             peripheral.readValue(for: $0)
             peripheral.setNotifyValue(true, for: $0)
             switch $0.uuid {
-            case LeapMotionGestureService.leapHandData:
-                leapHandData = $0
-            case LeapMotionGestureService.leapHandData:
-                lhData = $0
+            case LeapMotionGestureService.hand:
+                handData = $0
             default:
                 return
             }
@@ -112,14 +109,12 @@ class LeapMotionGestureCentral: NSObject, CBCentralManagerDelegate, CBPeripheral
     //TODO: value updated + Main - Action.read(Value)
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         guard error == nil else { return }
-        guard let data = characteristic.value else { return }
+        guard let dataString = characteristic.value?.string else { return }
         let response: Value
         
         switch characteristic.uuid {
-        case LeapMotionGestureService.leapHandData:
-            response = .leapHandData(data)
-        case LeapMotionGestureService.lhData:
-            response = .lhData(data.string)
+        case LeapMotionGestureService.hand:
+            response = .handData(dataString)
         default:
             return
         }
@@ -137,8 +132,7 @@ extension LeapMotionGestureCentral {
     }
     
     enum Value {
-        case leapHandData(Data)
-        case lhData(String)
+        case handData(String)
     }
 }
 

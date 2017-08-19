@@ -22,27 +22,14 @@ class LeapMotionGesturePeripheral: NSObject {
         self.manager.delegate = self
     }
     
-    private var lhDataString: String = "" {
+    private var handDataString: String = "" {
         didSet {
-            updateValue(forCharacteristic: LeapMotionGestureService.lhData)
+            updateValue(forCharacteristic: LeapMotionGestureService.hand)
         }
     }
     
-    private var leapHandData: Data? = nil {
-        didSet {
-            guard leapHandData != nil else {
-                return
-            }
-            updateValue(forCharacteristic: LeapMotionGestureService.leapHandData)
-        }
-    }
-    
-    func set(lhDataString: String) {
-        self.lhDataString = lhDataString
-    }
-    
-    func set(leapHandData: Data) {
-        self.leapHandData = leapHandData
+    func set(handDataString: String) {
+        self.handDataString = handDataString
     }
     
     private func updateValue(forCharacteristic uuid: CBUUID) {
@@ -71,10 +58,8 @@ class LeapMotionGesturePeripheral: NSObject {
     
     func value(forCharacteristic uuid: CBUUID) -> Data? {
         switch uuid {
-        case LeapMotionGestureService.leapHandData:
-            return leapHandData
-        case LeapMotionGestureService.lhData:
-            return lhDataString.data(using: .utf8)
+        case LeapMotionGestureService.hand:
+            return handDataString.data(using: .utf8)
         default:
             return nil
         }
