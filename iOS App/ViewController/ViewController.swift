@@ -13,7 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var connection: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     
-    fileprivate let central: LeapMotionGestureCentral = LeapMotionGestureCentral()
+    fileprivate var leapMotionMPCBrowser: LeapMotionMPCBrowser? = nil
+//    fileprivate let central: LeapMotionGestureCentral = LeapMotionGestureCentral()
     fileprivate let jsonDecoder = JSONDecoder()
     
     fileprivate let sceneView = SCNView()
@@ -29,9 +30,14 @@ class ViewController: UIViewController {
         commonInit()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        leapMotionMPCBrowser = LeapMotionMPCBrowser()
+    }
+    
     private func commonInit() {
         valueLabel.text = ""
-        central.delegate = self
+//        central.delegate = self
         setupScene()
     }
     

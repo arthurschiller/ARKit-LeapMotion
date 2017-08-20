@@ -19,7 +19,8 @@ class LeapVisualizationViewController: NSViewController {
         return view
     }()
     
-    private let leapMotionGesturePeripheral = LeapMotionGesturePeripheral()
+//    private let leapMotionGesturePeripheral = LeapMotionGesturePeripheral()
+    private var leapMotionMPCAdvertiserService: LeapMotionMPCAdvertiser? = nil
     private let leapService = LeapService()
     private let jsonEncoder = JSONEncoder()
     
@@ -28,8 +29,14 @@ class LeapVisualizationViewController: NSViewController {
         commonInit()
     }
     
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        leapMotionMPCAdvertiserService = LeapMotionMPCAdvertiser()
+    }
+    
     private func commonInit() {
-        leapMotionGesturePeripheral.startAdvertising()
+//        leapMotionGestureAdvertiser.startAdvertising()
+//        leapMotionGesturePeripheral.startAdvertising()
         leapService.delegate = self
         leapService.run()
         
@@ -73,7 +80,7 @@ extension LeapVisualizationViewController: LeapServiceDelegate {
     }
     
     func didUpdate(handDataString: String) {
-        leapMotionGesturePeripheral.set(handDataString: handDataString)
+//        leapMotionGesturePeripheral.set(handDataString: handDataString)
     }
 }
 
