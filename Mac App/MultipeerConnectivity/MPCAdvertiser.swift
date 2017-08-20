@@ -16,12 +16,12 @@ class LeapMotionMPCAdvertiser: NSObject {
     
     private let serviceType = "lm-data"
     
-    private let localPeerId = MCPeerID(displayName: "LMDataService")
+    private let localPeerId = MCPeerID(displayName: "LMService")
     private let serviceAdvertiser: MCNearbyServiceAdvertiser
     
     var delegate: LeapMotionMPCAdvertiserDelegate?
     
-    lazy var session : MCSession = {
+    lazy var session: MCSession = {
         let session = MCSession(
             peer: self.localPeerId,
             securityIdentity: nil,

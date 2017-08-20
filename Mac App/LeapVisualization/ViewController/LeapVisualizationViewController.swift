@@ -7,7 +7,7 @@
 
 import Cocoa
 import SceneKit
-import OpenGL
+import MultipeerConnectivity
 
 class LeapVisualizationViewController: NSViewController {
     
@@ -19,10 +19,24 @@ class LeapVisualizationViewController: NSViewController {
         return view
     }()
     
+    private var peerID: MCPeerID!
+    private var mcSession: MCSession!
+    private var mcAdvertiserAssistant: MCAdvertiserAssistant!
+    
+    private var streamTargetPeer: MCPeerID?
+    private var outputStream: OutputStream?
+//    private lazy var mcSession: MCSession = {
+//        return MCSession(
+//            peer: self.peerID!,
+//            securityIdentity: nil,
+//            encryptionPreference: .none
+//        )
+//    }()
 //    private let leapMotionGesturePeripheral = LeapMotionGesturePeripheral()
-    private var leapMotionMPCAdvertiserService: LeapMotionMPCAdvertiser? = nil
+//    private var leapMotionMPCAdvertiserService: LeapMotionMPCAdvertiser? = nil
     private let leapService = LeapService()
-    private let jsonEncoder = JSONEncoder()
+//    private let jsonEncoder = JSONEncoder()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +45,7 @@ class LeapVisualizationViewController: NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        leapMotionMPCAdvertiserService = LeapMotionMPCAdvertiser()
+        startHostingMCSession()
     }
     
     private func commonInit() {
@@ -52,13 +66,113 @@ class LeapVisualizationViewController: NSViewController {
             sceneView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             sceneView.leftAnchor.constraint(equalTo: view.leftAnchor)
         ])
+        
+        setupMultipeerConnectivity()
     }
     
-//    private func prepareAndAdvertisePeripheralData(with handRepresentation: LeapHandRepresentation) {
-////        let dataString = "\(handRepresentation.position.x),\(handRepresentation.position.y),\(handRepresentation.position.z),\(handRepresentation.eulerAngles.x),\(handRepresentation.eulerAngles.y),\(handRepresentation.eulerAngles.z)"
-////        let dataString = "\(handRepresentation.position.x),\(handRepresentation.position.y),\(handRepresentation.position.z)"
-////        leapMotionGesturePeripheral.set(handDataString: dataString)
-//    }
+    private func setupMultipeerConnectivity() {
+        setupPeerId()
+        mcSession = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
+        mcSession.delegate = self
+    }
+    
+    private func startHostingMCSession() {
+        print("Start advertising.")
+        mcAdvertiserAssistant = MCAdvertiserAssistant(
+            serviceType: LMMCService.type,
+            discoveryInfo: nil,
+            session: mcSession
+        )
+        mcAdvertiserAssistant?.start()
+    }
+    
+    private func setupPeerId() {
+        let kDisplayNameKey = "kDisplayNameKey"
+        let kPeerIDKey = "kPeerIDKey"
+        let displayName: String = "LMDSupply"
+        let defaults = UserDefaults.standard
+        let oldDisplayName = defaults.string(forKey: kDisplayNameKey)
+        
+        if oldDisplayName == displayName {
+            guard let peerIDData = defaults.data(forKey: kPeerIDKey) else {
+                return
+            }
+            guard let id = NSKeyedUnarchiver.unarchiveObject(with: peerIDData) as? MCPeerID else {
+                return
+            }
+            self.peerID = id
+            return
+        }
+        
+        let peerID = MCPeerID(displayName: displayName)
+        let peerIDData = NSKeyedArchiver.archivedData(withRootObject: peerID)
+        defaults.set(peerIDData, forKey: kPeerIDKey)
+        defaults.set(displayName, forKey: kDisplayNameKey)
+        defaults.synchronize()
+        self.peerID = peerID
+    }
+    
+    private func stream(data: LMHData) {
+        guard let outputStream = outputStream else {
+            print("No Stream available")
+            return
+        }
+        
+        outputStream.write(data.toBytes(), maxLength: 24)
+    }
+    
+    private func startStream() {
+        guard
+            let streamTargetPeer = streamTargetPeer,
+            let stream = try? mcSession.startStream(withName: "LMDataStream", toPeer: streamTargetPeer)
+        else {
+            return
+        }
+        
+        stream.schedule(in: .main, forMode: .defaultRunLoopMode)
+        stream.delegate = self
+        stream.open()
+        self.outputStream = stream
+    }
+}
+
+extension LeapVisualizationViewController: MCSessionDelegate {
+    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        switch state {
+        case MCSessionState.connected:
+            print("Connected: \(peerID.displayName)")
+            streamTargetPeer = peerID
+            startStream()
+            
+        case MCSessionState.connecting:
+            print("Connecting: \(peerID.displayName)")
+            
+        case MCSessionState.notConnected:
+            print("Not Connected: \(peerID.displayName)")
+        }
+    }
+    
+    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        
+    }
+    
+    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
+        
+    }
+    
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
+        
+    }
+    
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        
+    }
+}
+
+extension LeapVisualizationViewController: StreamDelegate {
+    func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
+        // handle stream
+    }
 }
 
 extension LeapVisualizationViewController: LeapServiceDelegate {
@@ -77,10 +191,23 @@ extension LeapVisualizationViewController: LeapServiceDelegate {
     
     func didUpdate(handRepresentation: LeapHandRepresentation) {
         sceneManager?.leapHandRepresentation = handRepresentation
+        serializeAndStream(handData: handRepresentation)
     }
     
     func didUpdate(handDataString: String) {
 //        leapMotionGesturePeripheral.set(handDataString: handDataString)
+    }
+    
+    private func serializeAndStream(handData: LeapHandRepresentation) {
+        let serializedData = LMHData(
+            x: handData.position.x,
+            y: handData.position.y,
+            z: handData.position.z,
+            pitch: handData.eulerAngles.x,
+            yaw: handData.eulerAngles.y,
+            roll: handData.eulerAngles.z
+        )
+        stream(data: serializedData)
     }
 }
 

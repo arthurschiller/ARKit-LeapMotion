@@ -44,9 +44,9 @@ class LeapService: NSObject, LeapListener {
             guard let data = handRepresentation else {
                 return
             }
-            updateHandDataString()
-            let dataString = "\(data.position.x),\(data.position.y),\(data.position.z)"
-            delegate?.didUpdate(handDataString: dataString)
+//            updateHandDataString()
+//            let dataString = "\(data.position.x),\(data.position.y),\(data.position.z)"
+//            delegate?.didUpdate(handDataString: dataString)
             delegate?.didUpdate(handRepresentation: data)
         }
     }

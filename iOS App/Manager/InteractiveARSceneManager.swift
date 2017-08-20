@@ -53,13 +53,13 @@ class InteractiveARSceneManager: NSObject {
 extension InteractiveARSceneManager {
     func runSession() {
         
-        guard ARWorldTrackingSessionConfiguration.isSupported else {
-            let configuration = ARSessionConfiguration()
+        guard ARWorldTrackingConfiguration.isSupported else {
+            let configuration = AROrientationTrackingConfiguration()
             sceneView.session.run(configuration)
             return
         }
         
-        let configuration = ARWorldTrackingSessionConfiguration()
+        let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
         sceneView.session.run(
             configuration,
