@@ -22,21 +22,10 @@ class LeapVisualizationViewController: NSViewController {
     private var peerID: MCPeerID!
     private var mcSession: MCSession!
     private var mcAdvertiserAssistant: MCAdvertiserAssistant!
-    
     private var streamTargetPeer: MCPeerID?
     private var outputStream: OutputStream?
-//    private lazy var mcSession: MCSession = {
-//        return MCSession(
-//            peer: self.peerID!,
-//            securityIdentity: nil,
-//            encryptionPreference: .none
-//        )
-//    }()
-//    private let leapMotionGesturePeripheral = LeapMotionGesturePeripheral()
-//    private var leapMotionMPCAdvertiserService: LeapMotionMPCAdvertiser? = nil
-    private let leapService = LeapService()
-//    private let jsonEncoder = JSONEncoder()
     
+    private let leapService = LeapService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +38,6 @@ class LeapVisualizationViewController: NSViewController {
     }
     
     private func commonInit() {
-//        leapMotionGestureAdvertiser.startAdvertising()
-//        leapMotionGesturePeripheral.startAdvertising()
         leapService.delegate = self
         leapService.run()
         
@@ -184,25 +171,19 @@ extension LeapVisualizationViewController: LeapServiceDelegate {
         scene.toggleNodes(show: false)
     }
     
-    func didUpdate(interactionBoxRepresentation: LeapInteractionBoxRepresentation) {
-        print("interaction box did change")
-//        scene.updateInteractionBox(withData: interactionBoxData)
-    }
-    
     func didUpdate(handRepresentation: LeapHandRepresentation) {
         sceneManager?.leapHandRepresentation = handRepresentation
         serializeAndStream(handData: handRepresentation)
     }
     
-    func didUpdate(handDataString: String) {
-//        leapMotionGesturePeripheral.set(handDataString: handDataString)
-    }
-    
     private func serializeAndStream(handData: LeapHandRepresentation) {
+        guard let translation = handData.translation else {
+            return
+        }
         let serializedData = LMHData(
-            x: handData.position.x,
-            y: handData.position.y,
-            z: handData.position.z,
+            x: translation.x,
+            y: translation.y,
+            z: translation.z,
             pitch: handData.eulerAngles.x,
             yaw: handData.eulerAngles.y,
             roll: handData.eulerAngles.z
@@ -237,17 +218,13 @@ class LeapVisualizationSceneManager: NSObject, SCNSceneRendererDelegate {
     
     private func setupScene() {
         sceneView.scene = scene
-        sceneView.backgroundColor = .cyan
+        sceneView.backgroundColor = NSColor(red:0.17, green:0.17, blue:0.18, alpha:1.0)
         sceneView.autoenablesDefaultLighting = false
         sceneView.allowsCameraControl = true
         sceneView.showsStatistics = true
         sceneView.preferredFramesPerSecond = 60
         sceneView.antialiasingMode = .multisampling4X
         sceneView.delegate = self
-    }
-    
-    func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
-        // hook into rendering
     }
 }
 

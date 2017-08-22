@@ -33,8 +33,8 @@ struct LMHData {
         self.y = y
         self.z = z
         self.pitch = pitch
-        self.roll = roll
         self.yaw = yaw
+        self.roll = roll
     }
     
     init(
@@ -48,22 +48,22 @@ struct LMHData {
         self.x = Float(x)
         self.y = Float(y)
         self.z = Float(z)
-        self.roll = Float(roll)
         self.pitch = Float(pitch)
         self.yaw = Float(yaw)
+        self.roll = Float(roll)
     }
     
     init(fromBytes: [UInt8]) {
         self.x = fromByteArray(Array(fromBytes[0...3]), Float.self)
         self.y = fromByteArray(Array(fromBytes[4...7]), Float.self)
         self.z = fromByteArray(Array(fromBytes[8...11]), Float.self)
-        self.roll = fromByteArray(Array(fromBytes[12...15]), Float.self)
-        self.pitch = fromByteArray(Array(fromBytes[16...19]), Float.self)
-        self.yaw = fromByteArray(Array(fromBytes[20...23]), Float.self)
+        self.pitch = fromByteArray(Array(fromBytes[12...15]), Float.self)
+        self.yaw = fromByteArray(Array(fromBytes[16...19]), Float.self)
+        self.roll = fromByteArray(Array(fromBytes[20...23]), Float.self)
     }
     
     func toBytes() -> [UInt8] {
-        let composite = [x, y, z, pitch, yaw, roll]
+        let composite = [x, y, z, roll, pitch, yaw]
         return composite.flatMap(){ toByteArray($0) }
     }
 }

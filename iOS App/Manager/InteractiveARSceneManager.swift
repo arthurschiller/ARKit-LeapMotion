@@ -13,6 +13,8 @@ class InteractiveARSceneManager: NSObject {
     fileprivate let scene = SCNScene()
     fileprivate var planes: [String : SCNNode] = [:]
     fileprivate var showPlanes: Bool = true
+    fileprivate let geometryNode: SCNNode = SCNNode()
+    fileprivate let metalMaterial = MetalMaterial(surfaceType: .streaked)
     
     init(sceneView: ARSCNView) {
         self.sceneView = sceneView
@@ -23,13 +25,15 @@ class InteractiveARSceneManager: NSObject {
     private func commonInit() {
         sceneView.scene = scene
         sceneView.autoenablesDefaultLighting = true
+        sceneView.automaticallyUpdatesLighting = true
         sceneView.antialiasingMode = .multisampling4X
         sceneView.delegate = self
         sceneView.showsStatistics = true
         sceneView.debugOptions = [
-            ARSCNDebugOptions.showWorldOrigin,
+//            ARSCNDebugOptions.showWorldOrigin,
             ARSCNDebugOptions.showFeaturePoints
         ]
+        setupEnvironment()
         addGeometry()
     }
     
@@ -38,15 +42,27 @@ class InteractiveARSceneManager: NSObject {
             width: 0.2,
             height: 0.2,
             length: 0.2,
-            chamferRadius: 0
+            chamferRadius: 0.005
         )
-        let boxNode = SCNNode(geometry: boxGeometry)
-        boxNode.position = SCNVector3(
+        boxGeometry.firstMaterial = metalMaterial
+        geometryNode.geometry = boxGeometry
+        geometryNode.position = SCNVector3(
             x: 0,
             y: 0,
             z: -0.5
         )
-        scene.rootNode.addChildNode(boxNode)
+        scene.rootNode.addChildNode(geometryNode)
+    }
+    
+    private func setupEnvironment() {
+        let environmentMap = UIImage(named: "apartmentBlurred")
+        scene.lightingEnvironment.contents = environmentMap
+        scene.lightingEnvironment.intensity = 1.5
+    }
+    
+    func updateGeometry(with translation: SCNVector3, and rotation: SCNVector3) {
+        geometryNode.runAction(.move(by: translation, duration: 0))
+        geometryNode.eulerAngles = rotation
     }
 }
 

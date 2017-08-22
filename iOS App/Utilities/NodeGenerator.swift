@@ -12,49 +12,6 @@ import ARKit
 
 struct NodeGenerator {
     
-//    static func generateSphereInFrontOf(node: SCNNode) -> SCNNode {
-//        let radius = (0.02...0.06).random()
-//        let sphere = SCNSphere(radius: CGFloat(radius))
-//
-//        let color = SCNMaterial()
-//        color.diffuse.contents = self.randomColor()
-//        sphere.materials = [color]
-//
-//        let sphereNode = SCNNode(geometry: sphere)
-//
-//        let position = SCNVector3(x: 0, y: 0, z: -1)
-//        sphereNode.position = node.convertPosition(position, to: nil)
-//        sphereNode.rotation = node.rotation
-//
-//        return sphereNode
-//    }
-//
-//    static func generateCubeInFrontOf(node: SCNNode, physics: Bool) -> SCNNode {
-//        let size = CGFloat((0.06...0.1).random())
-//        let box = SCNBox(width: size, height: size, length: size, chamferRadius: 0)
-//
-//        let color = SCNMaterial()
-//        color.diffuse.contents = self.randomColor()
-//        box.materials = [color]
-//
-//        let boxNode = SCNNode(geometry: box)
-//
-//        let position = SCNVector3(x: 0, y: 0, z: -1)
-//        boxNode.position = node.convertPosition(position, to: nil)
-//        boxNode.rotation = node.rotation
-//
-//        if physics {
-//            let physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: box, options: nil))
-//            physicsBody.mass = 1.25
-//            physicsBody.restitution = 0.25
-//            physicsBody.friction = 0.75
-//            physicsBody.categoryBitMask = CollisionTypes.shape.rawValue
-//            boxNode.physicsBody = physicsBody
-//        }
-//
-//        return boxNode
-//    }
-    
     static func generatePlaneFrom(planeAnchor: ARPlaneAnchor, physics: Bool, hidden: Bool) -> SCNNode {
         let plane = self.plane(from: planeAnchor, hidden: hidden)
         
@@ -95,7 +52,7 @@ struct NodeGenerator {
     }
 }
 
-extension ClosedRange where Bound : FloatingPoint {
+extension ClosedRange where Bound: FloatingPoint {
     public func random() -> Bound {
         let range = self.upperBound - self.lowerBound
         let randomValue = (Bound(arc4random_uniform(UINT32_MAX)) / Bound(UINT32_MAX)) * range + self.lowerBound
