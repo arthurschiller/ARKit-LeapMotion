@@ -16,20 +16,19 @@
 		D71C35601F45CD310096A044 /* FireParticleTrail.scnp in Resources */ = {isa = PBXBuildFile; fileRef = D71C355D1F45CD310096A044 /* FireParticleTrail.scnp */; };
 		D71C35611F45CD310096A044 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = D71C355E1F45CD310096A044 /* spark.png */; };
 		D71C35621F45CD310096A044 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = D71C355E1F45CD310096A044 /* spark.png */; };
-		D7319A221F4739DF00C80333 /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7319A211F4739DF00C80333 /* TestScene.swift */; };
 		D7319A231F473A5400C80333 /* SharedExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D704A6A91F3A42A000B11030 /* SharedExtensions.swift */; };
-		D75ADF191F2BB9A0006CC229 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF181F2BB9A0006CC229 /* Peripheral.swift */; };
+		D75298801F4C4F0000017A72 /* Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752987F1F4C4F0000017A72 /* Scenes.swift */; };
+		D75298821F4C4F1200017A72 /* SceneKitNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75298811F4C4F1200017A72 /* SceneKitNodes.swift */; };
+		D75ADF191F2BB9A0006CC229 /* LeapMotionGesturePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF181F2BB9A0006CC229 /* LeapMotionGesturePeripheral.swift */; };
 		D75ADF1C1F2BBAD8006CC229 /* LeapMotionGestureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF1B1F2BBAD8006CC229 /* LeapMotionGestureService.swift */; };
 		D75ADF1E1F2BBB6E006CC229 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF1D1F2BBB63006CC229 /* Data+Extension.swift */; };
 		D75ADF281F2BBEFC006CC229 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF271F2BBEFC006CC229 /* AppDelegate.swift */; };
-		D75ADF2A1F2BBEFC006CC229 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF291F2BBEFC006CC229 /* ViewController.swift */; };
 		D75ADF2D1F2BBEFC006CC229 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D75ADF2B1F2BBEFC006CC229 /* Main.storyboard */; };
 		D75ADF321F2BBEFC006CC229 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D75ADF301F2BBEFC006CC229 /* LaunchScreen.storyboard */; };
 		D75ADF381F2BD26A006CC229 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF1D1F2BBB63006CC229 /* Data+Extension.swift */; };
 		D75ADF391F2BD26D006CC229 /* LeapMotionGestureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF1B1F2BBAD8006CC229 /* LeapMotionGestureService.swift */; };
 		D75ADF3C1F2BD2B5006CC229 /* LeapMotionGestureCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ADF3B1F2BD29E006CC229 /* LeapMotionGestureCentral.swift */; };
 		D786D0481F262D50007CF64B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D786D0471F262D50007CF64B /* AppDelegate.swift */; };
-		D786D04A1F262D50007CF64B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D786D0491F262D50007CF64B /* ViewController.swift */; };
 		D786D04C1F262D50007CF64B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D786D04B1F262D50007CF64B /* Assets.xcassets */; };
 		D786D04F1F262D50007CF64B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D786D04D1F262D50007CF64B /* Main.storyboard */; };
 		D786D0911F26348E007CF64B /* LeapObjectiveC.mm in Sources */ = {isa = PBXBuildFile; fileRef = D786D08E1F263486007CF64B /* LeapObjectiveC.mm */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker"; }; };
@@ -41,12 +40,8 @@
 		D79D21F71F3F2AE4001EFEDF /* LeapVisualizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79D21F61F3F2AE4001EFEDF /* LeapVisualizationViewController.swift */; };
 		D7CBEE941F4A388200615DA3 /* MetalMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBEE931F4A388200615DA3 /* MetalMaterial.swift */; };
 		D7CBEEAE1F4AF4B000615DA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7CBEEAD1F4A476000615DA3 /* Assets.xcassets */; };
-		D7E06ACD1F499FF1000FA16A /* LeapMotionMPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E06ACC1F499FF1000FA16A /* LeapMotionMPCManager.swift */; };
-		D7E06ACE1F499FF1000FA16A /* LeapMotionMPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E06ACC1F499FF1000FA16A /* LeapMotionMPCManager.swift */; };
 		D7E06AD01F49A355000FA16A /* MultipeerConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E06ACF1F49A355000FA16A /* MultipeerConnectivity.swift */; };
 		D7E06AD11F49A355000FA16A /* MultipeerConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E06ACF1F49A355000FA16A /* MultipeerConnectivity.swift */; };
-		D7E6485E1F48A77E00E0E1F9 /* MPCAdvertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E6485D1F48A77E00E0E1F9 /* MPCAdvertiser.swift */; };
-		D7E648611F48AAF900E0E1F9 /* LeapMotionMPCBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E648601F48AAF900E0E1F9 /* LeapMotionMPCBrowser.swift */; };
 		D7ECB88F1F3F370600D0B406 /* LeapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7ECB88E1F3F370600D0B406 /* LeapService.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,21 +65,20 @@
 		D71C35581F45CCBB0096A044 /* smoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smoke.png; sourceTree = "<group>"; };
 		D71C355D1F45CD310096A044 /* FireParticleTrail.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = FireParticleTrail.scnp; sourceTree = "<group>"; };
 		D71C355E1F45CD310096A044 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
-		D7319A211F4739DF00C80333 /* TestScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 		D74BEDE01F264979001C4256 /* LeapMotion Bluetooth Sender.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "LeapMotion Bluetooth Sender.entitlements"; sourceTree = "<group>"; };
-		D75ADF181F2BB9A0006CC229 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
+		D752987F1F4C4F0000017A72 /* Scenes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scenes.swift; sourceTree = "<group>"; };
+		D75298811F4C4F1200017A72 /* SceneKitNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitNodes.swift; sourceTree = "<group>"; };
+		D75ADF181F2BB9A0006CC229 /* LeapMotionGesturePeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeapMotionGesturePeripheral.swift; sourceTree = "<group>"; };
 		D75ADF1B1F2BBAD8006CC229 /* LeapMotionGestureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeapMotionGestureService.swift; path = Shared/LeapMotionGestureService.swift; sourceTree = "<group>"; };
 		D75ADF1D1F2BBB63006CC229 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Data+Extension.swift"; path = "Shared/Data+Extension.swift"; sourceTree = "<group>"; };
 		D75ADF251F2BBEFC006CC229 /* iOS App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D75ADF271F2BBEFC006CC229 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D75ADF291F2BBEFC006CC229 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D75ADF2C1F2BBEFC006CC229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D75ADF311F2BBEFC006CC229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D75ADF331F2BBEFC006CC229 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D75ADF3B1F2BD29E006CC229 /* LeapMotionGestureCentral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeapMotionGestureCentral.swift; sourceTree = "<group>"; };
-		D786D0441F262D50007CF64B /* LeapMotion Bluetooth Sender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LeapMotion Bluetooth Sender.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D786D0441F262D50007CF64B /* LeapMotion Visualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LeapMotion Visualizer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D786D0471F262D50007CF64B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D786D0491F262D50007CF64B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D786D04B1F262D50007CF64B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D786D04E1F262D50007CF64B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D786D0501F262D50007CF64B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,10 +96,7 @@
 		D79D21F61F3F2AE4001EFEDF /* LeapVisualizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeapVisualizationViewController.swift; sourceTree = "<group>"; };
 		D7CBEE931F4A388200615DA3 /* MetalMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalMaterial.swift; sourceTree = "<group>"; };
 		D7CBEEAD1F4A476000615DA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D7E06ACC1F499FF1000FA16A /* LeapMotionMPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeapMotionMPCManager.swift; sourceTree = "<group>"; };
 		D7E06ACF1F49A355000FA16A /* MultipeerConnectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MultipeerConnectivity.swift; path = Shared/MultipeerConnectivity.swift; sourceTree = "<group>"; };
-		D7E6485D1F48A77E00E0E1F9 /* MPCAdvertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCAdvertiser.swift; sourceTree = "<group>"; };
-		D7E648601F48AAF900E0E1F9 /* LeapMotionMPCBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeapMotionMPCBrowser.swift; sourceTree = "<group>"; };
 		D7ECB88E1F3F370600D0B406 /* LeapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeapService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,10 +138,19 @@
 			path = ParticleSystems;
 			sourceTree = "<group>";
 		};
+		D752987E1F4C4ED600017A72 /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				D752987F1F4C4F0000017A72 /* Scenes.swift */,
+				D75298811F4C4F1200017A72 /* SceneKitNodes.swift */,
+			);
+			path = "UI Components";
+			sourceTree = "<group>";
+		};
 		D75ADF161F2BB98C006CC229 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
-				D75ADF181F2BB9A0006CC229 /* Peripheral.swift */,
+				D75ADF181F2BB9A0006CC229 /* LeapMotionGesturePeripheral.swift */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -170,11 +170,10 @@
 		D75ADF261F2BBEFC006CC229 /* iOS App */ = {
 			isa = PBXGroup;
 			children = (
-				D7E6485F1F48AADA00E0E1F9 /* MultipeerConnectivity */,
-				D795328B1F4890EB009B39FC /* Utilities */,
-				D79532881F487844009B39FC /* Manager */,
-				D79532841F4876BF009B39FC /* UI Components */,
 				D79532831F4876B5009B39FC /* ViewController */,
+				D79532841F4876BF009B39FC /* UI Components */,
+				D79532881F487844009B39FC /* Manager */,
+				D795328B1F4890EB009B39FC /* Utilities */,
 				D75ADF3A1F2BD29E006CC229 /* Bluetooth */,
 				D75ADF271F2BBEFC006CC229 /* AppDelegate.swift */,
 				D75ADF2B1F2BBEFC006CC229 /* Main.storyboard */,
@@ -196,9 +195,9 @@
 		D786D0391F262D0F007CF64B = {
 			isa = PBXGroup;
 			children = (
-				D75ADF1A1F2BBAB4006CC229 /* Shared */,
 				D786D0461F262D50007CF64B /* Mac App */,
 				D75ADF261F2BBEFC006CC229 /* iOS App */,
+				D75ADF1A1F2BBAB4006CC229 /* Shared */,
 				D786D0451F262D50007CF64B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -206,7 +205,7 @@
 		D786D0451F262D50007CF64B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D786D0441F262D50007CF64B /* LeapMotion Bluetooth Sender.app */,
+				D786D0441F262D50007CF64B /* LeapMotion Visualizer.app */,
 				D75ADF251F2BBEFC006CC229 /* iOS App.app */,
 			);
 			name = Products;
@@ -215,15 +214,12 @@
 		D786D0461F262D50007CF64B /* Mac App */ = {
 			isa = PBXGroup;
 			children = (
-				D7ECB88D1F3F36E700D0B406 /* Shared */,
-				D79D21F41F3F2A7B001EFEDF /* LeapVisualization */,
+				D79D21F41F3F2A7B001EFEDF /* LeapMotion Visualization */,
 				D74BEDE01F264979001C4256 /* LeapMotion Bluetooth Sender.entitlements */,
-				D7E648581F48A38000E0E1F9 /* MultipeerConnectivity */,
 				D75ADF161F2BB98C006CC229 /* Bluetooth */,
 				D786D0881F263486007CF64B /* Libraries */,
 				D786D0611F26306C007CF64B /* BridgingHeader */,
 				D786D0471F262D50007CF64B /* AppDelegate.swift */,
-				D786D0491F262D50007CF64B /* ViewController.swift */,
 				D786D04B1F262D50007CF64B /* Assets.xcassets */,
 				D786D04D1F262D50007CF64B /* Main.storyboard */,
 				D786D0501F262D50007CF64B /* Info.plist */,
@@ -272,7 +268,6 @@
 		D79532831F4876B5009B39FC /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D75ADF291F2BBEFC006CC229 /* ViewController.swift */,
 				D79532861F487712009B39FC /* MainViewController.swift */,
 			);
 			path = ViewController;
@@ -282,17 +277,8 @@
 			isa = PBXGroup;
 			children = (
 				D7CBEE921F4A386800615DA3 /* Materials */,
-				D79532851F4876CC009B39FC /* Scenes */,
 			);
 			path = "UI Components";
-			sourceTree = "<group>";
-		};
-		D79532851F4876CC009B39FC /* Scenes */ = {
-			isa = PBXGroup;
-			children = (
-				D7319A211F4739DF00C80333 /* TestScene.swift */,
-			);
-			path = Scenes;
 			sourceTree = "<group>";
 		};
 		D79532881F487844009B39FC /* Manager */ = {
@@ -311,12 +297,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		D79D21F41F3F2A7B001EFEDF /* LeapVisualization */ = {
+		D79D21F41F3F2A7B001EFEDF /* LeapMotion Visualization */ = {
 			isa = PBXGroup;
 			children = (
+				D752987E1F4C4ED600017A72 /* UI Components */,
+				D7ECB8901F3F371B00D0B406 /* Services */,
 				D79D21F51F3F2A94001EFEDF /* ViewController */,
 			);
-			path = LeapVisualization;
+			path = "LeapMotion Visualization";
 			sourceTree = "<group>";
 		};
 		D79D21F51F3F2A94001EFEDF /* ViewController */ = {
@@ -341,31 +329,6 @@
 				D7CBEEAD1F4A476000615DA3 /* Assets.xcassets */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		D7E648581F48A38000E0E1F9 /* MultipeerConnectivity */ = {
-			isa = PBXGroup;
-			children = (
-				D7E6485D1F48A77E00E0E1F9 /* MPCAdvertiser.swift */,
-				D7E06ACC1F499FF1000FA16A /* LeapMotionMPCManager.swift */,
-			);
-			path = MultipeerConnectivity;
-			sourceTree = "<group>";
-		};
-		D7E6485F1F48AADA00E0E1F9 /* MultipeerConnectivity */ = {
-			isa = PBXGroup;
-			children = (
-				D7E648601F48AAF900E0E1F9 /* LeapMotionMPCBrowser.swift */,
-			);
-			path = MultipeerConnectivity;
-			sourceTree = "<group>";
-		};
-		D7ECB88D1F3F36E700D0B406 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				D7ECB8901F3F371B00D0B406 /* Services */,
-			);
-			path = Shared;
 			sourceTree = "<group>";
 		};
 		D7ECB8901F3F371B00D0B406 /* Services */ = {
@@ -411,7 +374,7 @@
 			);
 			name = "Mac App";
 			productName = "Mac App";
-			productReference = D786D0441F262D50007CF64B /* LeapMotion Bluetooth Sender.app */;
+			productReference = D786D0441F262D50007CF64B /* LeapMotion Visualizer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -491,13 +454,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7E06ACE1F499FF1000FA16A /* LeapMotionMPCManager.swift in Sources */,
 				D7319A231F473A5400C80333 /* SharedExtensions.swift in Sources */,
-				D7E648611F48AAF900E0E1F9 /* LeapMotionMPCBrowser.swift in Sources */,
 				D75ADF391F2BD26D006CC229 /* LeapMotionGestureService.swift in Sources */,
-				D7319A221F4739DF00C80333 /* TestScene.swift in Sources */,
 				D795328D1F4890FF009B39FC /* NodeGenerator.swift in Sources */,
-				D75ADF2A1F2BBEFC006CC229 /* ViewController.swift in Sources */,
 				D75ADF381F2BD26A006CC229 /* Data+Extension.swift in Sources */,
 				D79532871F487712009B39FC /* MainViewController.swift in Sources */,
 				D7E06AD11F49A355000FA16A /* MultipeerConnectivity.swift in Sources */,
@@ -513,17 +472,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D75ADF1C1F2BBAD8006CC229 /* LeapMotionGestureService.swift in Sources */,
-				D7E6485E1F48A77E00E0E1F9 /* MPCAdvertiser.swift in Sources */,
+				D75298801F4C4F0000017A72 /* Scenes.swift in Sources */,
 				D704A6AA1F3A42A000B11030 /* SharedExtensions.swift in Sources */,
 				D786D0911F26348E007CF64B /* LeapObjectiveC.mm in Sources */,
+				D75298821F4C4F1200017A72 /* SceneKitNodes.swift in Sources */,
 				D7E06AD01F49A355000FA16A /* MultipeerConnectivity.swift in Sources */,
-				D786D04A1F262D50007CF64B /* ViewController.swift in Sources */,
 				D786D0481F262D50007CF64B /* AppDelegate.swift in Sources */,
 				D7ECB88F1F3F370600D0B406 /* LeapService.swift in Sources */,
-				D75ADF191F2BB9A0006CC229 /* Peripheral.swift in Sources */,
+				D75ADF191F2BB9A0006CC229 /* LeapMotionGesturePeripheral.swift in Sources */,
 				D75ADF1E1F2BBB6E006CC229 /* Data+Extension.swift in Sources */,
 				D79D21F71F3F2AE4001EFEDF /* LeapVisualizationViewController.swift in Sources */,
-				D7E06ACD1F499FF1000FA16A /* LeapMotionMPCManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,7 +706,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.arthurschiller.ARKitLeapMotion.Mac-App";
-				PRODUCT_NAME = "LeapMotion Bluetooth Sender";
+				PRODUCT_NAME = "LeapMotion Visualizer";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "Mac App/BridgingHeader/Mac App-Bridging-Header.h";
@@ -810,7 +768,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.arthurschiller.ARKitLeapMotion.Mac-App";
-				PRODUCT_NAME = "LeapMotion Bluetooth Sender";
+				PRODUCT_NAME = "LeapMotion Visualizer";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Mac App/BridgingHeader/Mac App-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

@@ -8,49 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iOS_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching for connections…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ckj-O3-dOc">
-                                <rect key="frame" x="80" y="323" width="214" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Will be replaced…" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IlA-Qv-0Rg">
-                                <rect key="frame" x="30" y="394" width="315" height="18"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="IlA-Qv-0Rg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="RgC-MI-QSx"/>
-                            <constraint firstAttribute="trailing" secondItem="IlA-Qv-0Rg" secondAttribute="trailing" constant="30" id="TPA-l3-cuq"/>
-                            <constraint firstItem="IlA-Qv-0Rg" firstAttribute="top" secondItem="Ckj-O3-dOc" secondAttribute="bottom" constant="50" id="ZQE-qA-CXU"/>
-                            <constraint firstItem="Ckj-O3-dOc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gjq-2U-KYR"/>
-                            <constraint firstItem="Ckj-O3-dOc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="xmv-Vu-kwl"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="connection" destination="Ckj-O3-dOc" id="2tl-S4-AWC"/>
-                        <outlet property="valueLabel" destination="IlA-Qv-0Rg" id="mvx-ys-7RH"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="171.36431784107947"/>
-        </scene>
         <!--Main View Controller-->
         <scene sceneID="Jg7-3R-lX8">
             <objects>
@@ -66,17 +23,44 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sM5-4K-CRD">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </arscnView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KQ1-5a-dGw">
+                                <rect key="frame" x="87" y="600" width="201" height="37"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fUG-OF-sCb">
+                                    <rect key="frame" x="0.0" y="0.0" width="201" height="37"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LfW-Ha-41V">
+                                            <rect key="frame" x="16" y="4" width="169" height="29"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal" title="Tap To Connect Controller">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="LfW-Ha-41V" secondAttribute="bottom" constant="4" id="2dD-af-M9v"/>
+                                        <constraint firstItem="LfW-Ha-41V" firstAttribute="leading" secondItem="fUG-OF-sCb" secondAttribute="leading" constant="16" id="3NA-BL-Ncd"/>
+                                        <constraint firstItem="LfW-Ha-41V" firstAttribute="top" secondItem="fUG-OF-sCb" secondAttribute="top" constant="4" id="IWR-0b-5Od"/>
+                                        <constraint firstAttribute="trailing" secondItem="LfW-Ha-41V" secondAttribute="trailing" constant="16" id="KjX-Tj-Wsu"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="w5l-ub-jYA" firstAttribute="top" secondItem="sM5-4K-CRD" secondAttribute="bottom" id="4VF-mJ-gcb"/>
+                            <constraint firstItem="KQ1-5a-dGw" firstAttribute="centerX" secondItem="R46-Pg-ZMC" secondAttribute="centerX" id="NgL-K1-YtA"/>
                             <constraint firstItem="sM5-4K-CRD" firstAttribute="leading" secondItem="R46-Pg-ZMC" secondAttribute="leading" id="Rrf-qK-73C"/>
                             <constraint firstAttribute="trailing" secondItem="sM5-4K-CRD" secondAttribute="trailing" id="ZJ0-YP-tYO"/>
+                            <constraint firstItem="w5l-ub-jYA" firstAttribute="top" secondItem="KQ1-5a-dGw" secondAttribute="bottom" constant="30" id="jVc-e3-JpC"/>
                             <constraint firstItem="sM5-4K-CRD" firstAttribute="top" secondItem="R46-Pg-ZMC" secondAttribute="top" id="uX3-EL-ISl"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="arSceneView" destination="sM5-4K-CRD" id="R00-0t-iHD"/>
+                        <outlet property="connectButton" destination="LfW-Ha-41V" id="BEw-0O-tbp"/>
+                        <outlet property="connectButtonWrapperView" destination="KQ1-5a-dGw" id="cMH-Iq-TAI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4B7-Qr-fCk" userLabel="First Responder" sceneMemberID="firstResponder"/>

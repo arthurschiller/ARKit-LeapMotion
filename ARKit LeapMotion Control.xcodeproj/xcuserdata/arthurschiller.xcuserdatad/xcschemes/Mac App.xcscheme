@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D786D0431F262D50007CF64B"
-               BuildableName = "LeapMotion Bluetooth Sender.app"
+               BuildableName = "LeapMotion Visualizer.app"
                BlueprintName = "Mac App"
                ReferencedContainer = "container:ARKit LeapMotion Control.xcodeproj">
             </BuildableReference>
@@ -34,7 +34,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D786D0431F262D50007CF64B"
-            BuildableName = "LeapMotion Bluetooth Sender.app"
+            BuildableName = "LeapMotion Visualizer.app"
             BlueprintName = "Mac App"
             ReferencedContainer = "container:ARKit LeapMotion Control.xcodeproj">
          </BuildableReference>
@@ -58,7 +58,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D786D0431F262D50007CF64B"
-            BuildableName = "LeapMotion Bluetooth Sender.app"
+            BuildableName = "LeapMotion Visualizer.app"
             BlueprintName = "Mac App"
             ReferencedContainer = "container:ARKit LeapMotion Control.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D786D0431F262D50007CF64B"
-            BuildableName = "LeapMotion Bluetooth Sender.app"
+            BuildableName = "LeapMotion Visualizer.app"
             BlueprintName = "Mac App"
             ReferencedContainer = "container:ARKit LeapMotion Control.xcodeproj">
          </BuildableReference>

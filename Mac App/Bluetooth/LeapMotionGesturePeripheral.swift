@@ -1,5 +1,5 @@
 //
-//  Peripheral.swift
+//  LeapMotionGesturePeripheral.swift
 //  Mac App
 //
 //  Created by Arthur Schiller on 28.07.17.

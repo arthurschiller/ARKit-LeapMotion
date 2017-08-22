@@ -19,15 +19,16 @@ class LeapService: NSObject, LeapListener {
     
     var delegate: LeapServiceDelegate?
 
-    private var isUpdatingData: Bool = false {
+    // MARK: reflect if the service is currently updating its data
+    fileprivate var isUpdatingData: Bool = false {
         willSet {
             if newValue != isUpdatingData {
                 newValue == true ? delegate?.willUpdateData() : delegate?.didStopUpdatingData()
             }
         }
     }
-    private var controller: LeapController?
-    private var handRepresentation: LeapHandRepresentation? {
+    fileprivate var controller: LeapController?
+    fileprivate var handRepresentation: LeapHandRepresentation? {
         didSet {
             guard let data = handRepresentation else {
                 return
@@ -45,11 +46,11 @@ class LeapService: NSObject, LeapListener {
 extension LeapService {
     
     func onInit(_ notification: Notification!) {
-        print("Initialized")
+        print("LeapMotion Listener Initialized")
     }
     
     func onConnect(_ notification: Notification!) {
-        print("Connected")
+        print("LeapMotion Listener Connected")
         guard let controller: LeapController = notification.object as? LeapController else {
             return
         }
@@ -61,27 +62,28 @@ extension LeapService {
     
     func onDisconnect(_ notification: Notification!) {
         isUpdatingData = false
-        print("Disconnected")
+        print("LeapMotion Listener Disconnected")
     }
     
     func onServiceConnect(_ notification: Notification!) {
-        print("Service Connected")
+        print("LeapMotion Service Connected")
     }
     
     func onServiceDisconnect(_ notification: Notification!) {
         isUpdatingData = false
-        print("Service Disconnected")
+        print("LeapMotion Service Disconnected")
     }
     
     func onDeviceChange(_ notification: Notification!) {
-        print("Device Changed")
+        print("LeapMotion Device Changed")
     }
     
     func onExit(_ notification: Notification!) {
         isUpdatingData = false
-        print("Exited")
+        print("LeapMotion Listener Exited")
     }
     
+    // MARK: gets called each time a new frame gets emitted
     func onFrame(_ notification: Notification!) {
         guard
             let controller: LeapController = notification.object as? LeapController,
@@ -109,6 +111,7 @@ extension LeapService {
     }
 }
 
+// MARK: structure describing a simplified representation of the interaction box from a LeapMotion device
 struct LeapInteractionBoxRepresentation {
     let center: SCNVector3
     let width: CGFloat
@@ -116,6 +119,7 @@ struct LeapInteractionBoxRepresentation {
     let depth: CGFloat
 }
 
+// MARK: structure describing a simplified representation of a hand
 struct LeapHandRepresentation {
     var translation: SCNVector3?
     let position: SCNVector3
@@ -123,6 +127,7 @@ struct LeapHandRepresentation {
     let fingers: [LeapFingerRepresentation]
 }
 
+// MARK: structure describing a simplified representation of a finger
 struct LeapFingerRepresentation {
     let type: LeapFingerType
     let mcpPosition: SCNVector3
@@ -131,6 +136,7 @@ struct LeapFingerRepresentation {
     let tipPosition: SCNVector3
 }
 
+// MARK: enum representing the different finger types
 enum LeapFingerType {
     case thumb
     case index
@@ -147,6 +153,7 @@ enum LeapFingerType {
     ]
 }
 
+// MARK: enum representing the different joins of a finger
 enum LeapFingerJointType {
     case mcp
     case pip
@@ -155,6 +162,8 @@ enum LeapFingerJointType {
 }
 
 extension LeapInteractionBox {
+    
+    // MARK: returns an interaction box representation
     func getRepresentation() -> LeapInteractionBoxRepresentation? {
         guard isValid else {
             return nil
@@ -173,6 +182,8 @@ extension LeapInteractionBox {
 }
 
 extension LeapHand {
+    
+    // MARK: returns the representation of a hand
     func getRepresentation() -> LeapHandRepresentation? {
         guard let fingerData = getFingerRepresentations() else {
             return nil
@@ -196,6 +207,7 @@ extension LeapHand {
         )
     }
     
+    // MARK: returns an array of finger representation from the hand
     func getFingerRepresentations() -> [LeapFingerRepresentation]? {
         guard let fingers: [LeapFinger] = fingers as? [LeapFinger] else {
             return nil
@@ -222,6 +234,8 @@ extension LeapHand {
 }
 
 extension LeapFinger {
+    
+    // MARK: returns representation of a fingers position
     func getRepresentation() -> LeapFingerRepresentation? {
         guard let type = getType() else {
             return nil
@@ -235,6 +249,7 @@ extension LeapFinger {
         )
     }
     
+    // MARK: returns the type of a finger
     func getType() -> LeapFingerType? {
         switch type {
         case LEAP_FINGER_TYPE_THUMB:
@@ -252,6 +267,7 @@ extension LeapFinger {
         }
     }
     
+    // MARK: returns the position of a fingers joint
     func position(of joint: LeapFingerJointType) -> SCNVector3 {
         let position: LeapVector
         switch joint  {
@@ -273,6 +289,7 @@ extension LeapFinger {
 }
 
 struct LeapHelpers {
+    // MARK: returns the finger of a specified type from an array of fingers
     func get(finger: LeapFingerType, from fingers: [LeapFinger]) -> LeapFinger? {
         guard fingers.count == 5 else {
             return nil

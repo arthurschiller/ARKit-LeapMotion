@@ -22,7 +22,7 @@ class InteractiveARSceneManager: NSObject {
         commonInit()
     }
     
-    private func commonInit() {
+    fileprivate func commonInit() {
         sceneView.scene = scene
         sceneView.autoenablesDefaultLighting = true
         sceneView.automaticallyUpdatesLighting = true
@@ -54,7 +54,7 @@ class InteractiveARSceneManager: NSObject {
         scene.rootNode.addChildNode(geometryNode)
     }
     
-    private func setupEnvironment() {
+    fileprivate func setupEnvironment() {
         let environmentMap = UIImage(named: "apartmentBlurred")
         scene.lightingEnvironment.contents = environmentMap
         scene.lightingEnvironment.intensity = 1.5
@@ -118,48 +118,5 @@ extension InteractiveARSceneManager: ARSCNViewDelegate {
             existingPlane.removeFromParentNode()
             self.planes.removeValue(forKey: key)
         }
-    }
-}
-
-class Plane: SCNNode {
-    
-    let anchor: ARPlaneAnchor
-    private var planeGeometry: SCNPlane? = nil
-    
-    init(with anchor: ARPlaneAnchor) {
-        self.anchor = anchor
-        super.init()
-        commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func commonInit() {
-        let geometry = SCNPlane(
-            width: CGFloat(anchor.extent.x),
-            height: CGFloat(anchor.extent.z)
-        )
-        geometry.firstMaterial?.diffuse.contents = UIColor.cyan
-        self.planeGeometry = geometry
-        let planeNode = SCNNode(geometry: geometry)
-        planeNode.position = SCNVector3(
-            x: anchor.center.x,
-            y: 0,
-            z: anchor.center.z
-        )
-        planeNode.transform = SCNMatrix4MakeRotation(Float.pi / 2, 1, 0, 0)
-        addChildNode(planeNode)
-    }
-    
-    func update(anchor: ARPlaneAnchor) {
-        planeGeometry?.width = CGFloat(anchor.extent.x)
-        planeGeometry?.height = CGFloat(anchor.extent.z)
-        position = SCNVector3(
-            x: anchor.center.x,
-            y: 0,
-            z: anchor.center.z
-        )
     }
 }

@@ -12,6 +12,8 @@ import MultipeerConnectivity
 class MainViewController: UIViewController {
     
     // MARK: InterfaceBuilder Outlets
+    @IBOutlet weak var connectButtonWrapperView: UIView!
+    @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var arSceneView: ARSCNView!
     
     // MARK: Private properties
@@ -35,24 +37,31 @@ class MainViewController: UIViewController {
         sceneManager.pauseSession()
     }
 
-    private func commonInit() {
+    fileprivate func commonInit() {
         setupMultipeerConnectivity()
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewWasTapped))
-        view.addGestureRecognizer(tapGestureRecognizer)
+        connectButtonWrapperView.layer.cornerRadius = 4
+        connectButtonWrapperView.clipsToBounds = true
+        connectButton.addTarget(
+            self,
+            action: #selector(connectButtonWasTapped),
+            for: .touchUpInside
+        )
+        toggleButtonState(isConnected: false)
     }
     
-    @objc private func viewWasTapped() {
+    @objc fileprivate func connectButtonWasTapped() {
         joinMCSession()
     }
     
-    private func setupMultipeerConnectivity() {
+    fileprivate func setupMultipeerConnectivity() {
         setupPeerId()
         mcSession = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
         mcSession.delegate = self
     }
     
-    private func joinMCSession() {
+    fileprivate func joinMCSession() {
+        // join the multipeer connectivity session
         let mcBrowser = MCBrowserViewController(serviceType: LMMCService.type, session: mcSession)
         mcBrowser.delegate = self
         mcBrowser.modalPresentationStyle = .overCurrentContext
@@ -60,7 +69,14 @@ class MainViewController: UIViewController {
         present(mcBrowser, animated: true, completion: nil)
     }
     
-    private func setupPeerId() {
+    fileprivate func setupPeerId() {
+        
+        /*
+         If we have already have set a peerID, load it from the UserDefaults so we avoid creating a new one.
+         Otherwise complications could arise. See:
+         https://developer.apple.com/documentation/multipeerconnectivity/mcpeerid
+         */
+        
         let kDisplayNameKey = "kDisplayNameKey"
         let kPeerIDKey = "kPeerIDKey"
         let displayName: String = "LMDUser"
@@ -85,6 +101,13 @@ class MainViewController: UIViewController {
         defaults.synchronize()
         self.peerID = peerID
     }
+    
+    fileprivate func toggleButtonState(isConnected: Bool) {
+        connectButton.setTitle(
+            isConnected ? "Connected" : "Tap To Connect Controller",
+            for: .normal
+        )
+    }
 }
 
 extension MainViewController: MCSessionDelegate, MCBrowserViewControllerDelegate {
@@ -92,33 +115,38 @@ extension MainViewController: MCSessionDelegate, MCBrowserViewControllerDelegate
         switch state {
         case MCSessionState.connected:
             print("Connected: \(peerID.displayName)")
-//            valueLabel.text = "Connected: \(peerID.displayName)"
+            DispatchQueue.main.async {
+                self.toggleButtonState(isConnected: true)
+            }
             
         case MCSessionState.connecting:
             print("Connecting: \(peerID.displayName)")
             
         case MCSessionState.notConnected:
             print("Not Connected: \(peerID.displayName)")
+            DispatchQueue.main.async {
+                self.toggleButtonState(isConnected: false)
+            }
         }
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-        print("received stream")
+        print("did receive stream")
         stream.delegate = self
         stream.schedule(in: .main, forMode: .defaultRunLoopMode)
         stream.open()
     }
     
     func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
-        
+        print("did start receiving resource")
     }
     
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
-        
+        print("did finish receiving resource")
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        print("%@", "didReceiveData: \(data)")
+        print("did receive data")
     }
     
     func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
@@ -132,6 +160,9 @@ extension MainViewController: MCSessionDelegate, MCBrowserViewControllerDelegate
 
 extension MainViewController: StreamDelegate {
     func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
+        
+        // get the raw data sent by the stream and convert it back to the actual data object
+        
         print("handle stream")
         
         guard
