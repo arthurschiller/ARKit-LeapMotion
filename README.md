@@ -1,5 +1,8 @@
 # ARKit + LeapMotion
-A sample projects demonstrating how a leap motion device can be hooked to an iPhone to control an ARKit Scene.
+
+![alt header](https://raw.githubusercontent.com/arthurschiller/ARKit-LeapMotion/master/Docs/header.png)
+
+A sample projects demonstrating how a lhttpseap motion device can be hooked to an iPhone to control an ARKit Scene.
 **Note:** to run the project you will need a Mac computer running a current system version, a LeapMotion Controller 
 and an iOS Device(iPhone 6S or better) running iOS 11. You will also need to install the [LeapMotion V2 Desktop Tracking SDK](https://developer.leapmotion.com/sdk/v2).
 
