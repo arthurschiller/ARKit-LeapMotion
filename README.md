@@ -6,6 +6,8 @@ A sample projects demonstrating how a LeapMotion device can be hooked to an iPho
 **Note:** to run the project you will need a Mac computer running a current system version, a LeapMotion Controller 
 and an iOS Device(iPhone 6S or better) running iOS 11. You will also need to install the [LeapMotion V2 Desktop Tracking SDK](https://developer.leapmotion.com/sdk/v2).
 
+Demo Video: [Click here](https://www.youtube.com/watch?v=asvIaAUdowI)
+
 ### Gettings started
 1. Open up the project with XCode 9.
 2. Connect your LeapMotion Controller and run the Mac App target.
